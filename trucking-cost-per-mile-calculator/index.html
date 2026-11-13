@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cost per Mile Calculator for Trucking &amp; Owner-Operators (Rate per Mile) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/trucking-cost-per-mile-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/trucking-cost-per-mile-calculator/";</script>
+</head><body>
+<div id="bs-tk" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/trucking-cost-per-mile-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-tk',key:'tk',title:'Trucking Cost per Mile Calculator',
+inputs:[{id:'mi',label:'Total miles per year',ph:'110000',step:100},{id:'dh',label:'Deadhead (empty) miles (%)',def:'12',step:1},{id:'tp',label:'Truck payment per month ($)',def:'2200',step:1},{id:'tr',label:'Trailer payment per month ($)',def:'600',step:1},{id:'in',label:'Insurance per year ($)',def:'14000',step:1},{id:'pm',label:'Permits, IRP, IFTA, UCR, HVUT per year ($)',def:'3500',step:1},{id:'sw',label:'ELD, phone, software, load board per month ($)',def:'150',step:1},{id:'fp',label:'Diesel price ($ per gallon)',def:'3.75',step:0.01},{id:'mpg',label:'Fuel economy (miles per gallon)',def:'6.5',step:0.1},{id:'rm',label:'Repairs & maintenance ($ per mile)',def:'0.20',step:0.01},{id:'ti',label:'Tires ($ per mile)',def:'0.04',step:0.01},{id:'tl',label:'Tolls & scales ($ per mile)',def:'0.03',step:0.01},{id:'dp',label:'Pay yourself per year ($)',def:'70000',step:100},{id:'fc',label:'Factoring fee (% of invoice, 0 if none)',def:'0',step:0.1},{id:'mg',label:'Profit margin (%)',def:'10',step:1}],
+demo:{mi:'110000',dh:'12',tp:'2200',tr:'600',in:'14000',pm:'3500',sw:'150',fp:'3.75',mpg:'6.5',rm:'0.20',ti:'0.04',tl:'0.03',dp:'70000',fc:'0',mg:'10'},
+calc:function(v,F){var mi=v.mi;if(!(mi>0)||!(v.mpg>0))return {hint:'Enter your total miles per year and fuel economy.'};
+ var lo=mi*(1-(v.dh||0)/100);if(!(lo>0))return {hint:'Deadhead must be under 100%.'};
+ var fixed=((v.tp||0)+(v.tr||0)+(v.sw||0))*12+(v.in||0)+(v.pm||0);
+ var fuelM=(v.fp||0)/v.mpg,varM=fuelM+(v.rm||0)+(v.ti||0)+(v.tl||0),varY=varM*mi,pay=v.dp||0;
+ var tot=fixed+varY+pay,cpm=tot/mi,cplm=tot/lo,be=cplm/(1-(v.fc||0)/100),tg=cplm*(1+(v.mg||0)/100)/(1-(v.fc||0)/100);
+ var r=function(l,y){return [l,F.money(y,0),F.money(y/mi,3),F.money(y/lo,3)]};
+ return {kpis:[['Rate to quote',F.money(tg,2)+' / loaded mile','g'],['Break-even rate',F.money(be,2)+' / loaded mile','w'],['Cost per total mile',F.money(cpm,3)],['Total cost per year',F.money(tot,0)]],
+ tables:[{title:'Cost breakdown',head:['Cost','Per year','Per total mile','Per loaded mile'],rows:[r('Truck & trailer payments',((v.tp||0)+(v.tr||0))*12),r('Insurance',v.in||0),r('Permits, IRP, IFTA, UCR, HVUT',v.pm||0),r('ELD, phone, software',(v.sw||0)*12),r('Fuel ('+F.money(fuelM,3)+'/mile)',fuelM*mi),r('Repairs & maintenance',(v.rm||0)*mi),r('Tires',(v.ti||0)*mi),r('Tolls & scales',(v.tl||0)*mi),r('Your pay',pay),r('Total',tot)]},
+ {title:'What a load must pay',head:['Loaded miles','Break-even','At your margin'],rows:[250,500,1000,1500].map(function(m){return [F.int(m)+' miles',F.money(be*m,0),F.money(tg*m,0)]})}],
+ note:'Rates are per loaded (paid) mile, because deadhead miles earn nothing but still cost fuel and wear. For comparison, the American Transportation Research Institute (ATRI) put the average cost of running a truck at $2.336 per mile in 2025, including driver pay. Planning estimate, not financial advice.'}}});</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

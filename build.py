@@ -54,12 +54,18 @@ def page(slug, c):
 """
 
 
-def embed_code(slug, c, h=760):
+AUTO = ("<script>addEventListener('message',function(e){if(e.origin==='https://erdalladre76.github.io'&&e.data&&e.data.bsEmbed){"
+        "var f=document.querySelectorAll('iframe[data-bs-embed]');for(var i=0;i<f.length;i++)if(f[i].contentWindow===e.source)"
+        "f[i].style.height=(e.data.h+4)+'px'}})</script>")
+
+
+def embed_code(slug, c, h=900):
     url = f"{SITE}/{slug}/"
     t = html.escape(clean_title(c["title"]))
-    return (f'<iframe src="{BASE}/{slug}/" title="{t}" width="100%" height="{h}" '
+    return (f'<iframe data-bs-embed src="{BASE}/{slug}/" title="{t}" width="100%" height="{h}" '
             f'style="border:1px solid #e2e8f0;border-radius:12px;max-width:760px" loading="lazy"></iframe>\n'
-            f'<p style="font-size:13px">Free <a href="{url}">{t}</a> by <a href="{SITE}/">Bookkeeping Sheets</a></p>')
+            f'<p style="font-size:13px">Free <a href="{url}">{t}</a> by <a href="{SITE}/">Bookkeeping Sheets</a></p>\n'
+            + AUTO)
 
 
 def index():

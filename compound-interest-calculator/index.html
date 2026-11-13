@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compound Interest Calculator with Monthly Contributions – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/compound-interest-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/compound-interest-calculator/";</script>
+</head><body>
+<div id="bs-ci" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/compound-interest-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-ci',key:'ci',title:'Compound Interest & Savings Calculator',
+inputs:[{id:'p',label:'Starting amount ($)',ph:'10000',step:100},{id:'pm',label:'Monthly contribution ($)',ph:'500',step:10},{id:'r',label:'Annual interest / return (%)',ph:'5',step:0.01},{id:'y',label:'Years',ph:'10',step:1},{id:'cf',label:'Compounding',type:'select',def:'12',opts:[['12','Monthly'],['4','Quarterly'],['1','Yearly'],['365','Daily']]}],
+demo:{p:'10000',pm:'500',r:'5',y:'10',cf:'12'},
+calc:function(v,F){var P=v.p||0,M=v.pm||0,r=(v.r||0)/100,Y=Math.round(v.y),cf=+v.cf||12;if(!(Y>0)||!(P>0||M>0))return {hint:'Enter a starting amount or monthly contribution, a rate and the number of years.'};
+ var bal=P,dep=P,rows=[],mr=Math.pow(1+r/cf,cf/12)-1;
+ for(var yv=1;yv<=Y;yv++){var s=bal;for(var mo=0;mo<12;mo++){bal=bal*(1+mr)+M;dep+=M}rows.push(['Year '+yv,F.money(dep,0),F.money(bal-dep,0),F.money(bal,0)])}
+ return {kpis:[['Future value',F.money(bal,0),'g'],['Total contributed',F.money(dep,0)],['Interest earned',F.money(bal-dep,0),'g'],['Effective annual rate',F.pct((Math.pow(1+r/cf,cf)-1)*100,3)]],tables:[{title:'Growth by year',head:['Year','Contributed','Interest','Balance'],rows:rows}],note:'Contributions are added at the end of each month. Returns are not guaranteed; this is an illustration, not investment advice.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

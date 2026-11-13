@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Time Card Calculator with Lunch Break and Overtime – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/time-card-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style><style>@media(max-width:600px){#bs-tc .bk2-grid{grid-template-columns:1fr 1fr 1fr}#bs-tc .bk2-grid>div:nth-last-child(-n+3){grid-column:1/-1}}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/time-card-calculator/";</script>
+</head><body>
+<div id="bs-tc" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/time-card-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(function(){var D=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],inp=[];D.forEach(function(d){inp.push({id:d+'i',label:d+' in',type:'time'},{id:d+'o',label:d+' out',type:'time'},{id:d+'b',label:'Break (min)',def:'',step:5})});
+inp.push({id:'rate',label:'Hourly rate ($)',ph:'22',step:0.01},{id:'ot',label:'Overtime rule',type:'select',def:'w',opts:[['w','Over 40 hours a week'],['d','Over 8 hours a day and 40 a week'],['n','No overtime']]},{id:'mult',label:'Overtime pay rate',type:'select',def:'1.5',opts:[['1.5','1.5x (time and a half)'],['2','2x (double time)']]});
+var demo={rate:'22',ot:'w',mult:'1.5'};D.forEach(function(d,i){demo[d+'i']=i<5?'08:30':i===5?'09:00':'';demo[d+'o']=i<5?'17:15':i===5?'13:00':'';demo[d+'b']=i<5?'30':i===5?'0':''});
+(window.BSKQ=window.BSKQ||[]).push({id:'bs-tc',key:'tc',title:'Time Card Calculator',inputs:inp,demo:demo,
+calc:function(v,F){function m(t){if(!t)return null;var p=String(t).split(':');return (+p[0])*60+(+p[1]||0)}function hm(x){x=Math.round(x);return Math.floor(x/60)+':'+('0'+x%60).slice(-2)}
+ var rows=[],tot=0,dot=0;D.forEach(function(d){var a=m(v[d+'i']),b=m(v[d+'o']);if(a==null||b==null)return;if(b<=a)b+=1440;var w=Math.max(0,b-a-(isFinite(v[d+'b'])?v[d+'b']:0));tot+=w;if(v.ot==='d')dot+=Math.max(0,w-480);rows.push([d,v[d+'i'],v[d+'o'],String(isFinite(v[d+'b'])?v[d+'b']:0),hm(w),(w/60).toFixed(2)])});
+ if(!rows.length)return {hint:'Enter clock-in and clock-out times for at least one day.'};
+ var otm=v.ot==='n'?0:Math.max(dot,tot-2400),reg=tot-otm,r=v.rate||0,mu=+v.mult||1.5,pay=reg/60*r+otm/60*r*mu,k=[['Total hours',hm(tot)+' ('+(tot/60).toFixed(2)+')','g'],['Regular hours',(reg/60).toFixed(2)],['Overtime hours',(otm/60).toFixed(2),otm?'w':'']];
+ if(r>0)k.push(['Gross pay',F.money(pay),'g']);
+ var t=[{title:'Time card',head:['Day','In','Out','Break (min)','Hours (h:mm)','Decimal'],rows:rows,foot:['Total','','','',hm(tot),(tot/60).toFixed(2)]}];
+ if(r>0)t.push({title:'Pay',head:['Item','Hours','Rate','Amount'],rows:[['Regular',(reg/60).toFixed(2),F.money(r),F.money(reg/60*r)],['Overtime',(otm/60).toFixed(2),F.money(r*mu),F.money(otm/60*r*mu)]],foot:['Gross pay',(tot/60).toFixed(2),'',F.money(pay)]});
+ return {kpis:k,tables:t,note:'Times past midnight count as an overnight shift. Federal law requires overtime for non-exempt employees over 40 hours a week; some states, like California, also require daily overtime.'}}})})();
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

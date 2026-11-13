@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trump Account Calculator: How Much Your Child’s Account Could Grow by 18 – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/trump-account-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/trump-account-calculator/";</script>
+</head><body>
+<div id="bs-ta" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/trump-account-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-ta',key:'ta',title:'Trump Account Calculator',
+inputs:[{id:'by',label:'Child\'s birth year',ph:'2026',step:1},{id:'pilot',label:'$1,000 Treasury pilot deposit',type:'select',def:'1',opts:[['1','Yes (US citizen born 2025-2028)'],['0','No']]},{id:'fam',label:'Family contributions per year ($)',def:'1000',step:1},{id:'emp',label:'Employer contributions per year ($, up to 2,500)',def:'0',step:1},{id:'oth',label:'Other contributions per year, e.g. grandparents ($)',def:'0',step:1},{id:'ret',label:'Expected yearly return before fees (%)',def:'7',step:0.1},{id:'fee',label:'Fund fees (%, max 0.10)',def:'0.05',step:0.01}],
+demo:{by:'2026',pilot:'1',fam:'1000',emp:'0',oth:'500',ret:'7',fee:'0.05'},
+calc:function(v,F){var by=Math.round(v.by);if(!(by>=2008&&by<=2040))return {hint:'Enter the child\'s birth year (for example 2026).'};
+ var start=2026,end=by+17;if(end<start)return {hint:'The growth period ends in the year the child turns 17, so this child is too old.'};
+ var emp=Math.min(v.emp||0,2500),fam=v.fam||0,oth=v.oth||0,yr=fam+emp+oth,capped=Math.min(yr,5000),cut=yr-capped;
+ var g=((v.ret||0)-(Math.min(v.fee||0,0.1)))/100,bal=0,ctb=0,rows=[];
+ var pil=(+v.pilot===1&&by>=2025&&by<=2028)?1000:0;
+ for(var y=start;y<=end;y++){var add=capped*(y===start?0.5:1);if(y===start){bal+=pil;}bal=bal*(1+g)+add*(1+g/2);ctb+=add;var age=y-by;if(y===start||age%3===0||y===end)rows.push([y+'',age<0?'-':age+'',F.money(ctb+(y>=start?pil:0),0),F.money(bal,0)]);}
+ var tot=ctb+pil,earn=bal-tot;
+ var k=[['Estimated balance at 18',F.money(bal,0),'g'],['Total put in',F.money(tot,0)],['Growth',F.money(earn,0),'g'],['Yearly contributions used',F.money(capped,0)]];
+ if(pil)k.push(['Treasury pilot deposit',F.money(pil,0),'g']);
+ if(cut>0)k.push(['Over the $5,000 yearly limit',F.money(cut,0),'w']);
+ if(+v.pilot===1&&!pil)k.push(['Pilot deposit','Not eligible (born outside 2025-2028)','w']);
+ return {kpis:k,tables:[{title:'Projected growth (contributions start July 4, 2026)',head:['Year','Age','Put in so far','Balance'],rows:rows},{title:'Key Trump Account rules',head:['Rule','Amount or limit'],rows:[['Treasury pilot deposit','$1,000, US citizens born 2025-2028'],['Yearly contribution limit','$5,000 (2026-2027, then inflation-adjusted)'],['Employer contribution','Up to $2,500 per employee, tax-free, counts toward $5,000'],['Investments','Low-cost US stock index fund, fees 0.1% or less'],['Withdrawals','Not before the year the child turns 18'],['After 18','Follows traditional IRA rules']]}],
+ note:'Projection only: returns are not guaranteed and stock funds can lose value. Assumes half a year of contributions in 2026 and a steady return each year. Family contributions are not tax-deductible; growth is tax-deferred. Charitable and government deposits for groups of children (such as large pledges) are not counted. Estimate only, not financial advice.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Custom Farming Rate Calculator: What to Charge per Acre – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/custom-farming-rate-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/custom-farming-rate-calculator/";</script>
+</head><body>
+<div id="bs-fm" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/custom-farming-rate-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-fm',key:'fm',title:'Custom Farming Rate Calculator',
+inputs:[{id:'p',label:'Machine price, tractor + implement ($)',ph:'320000',step:100},{id:'sv',label:'Salvage value at the end (% of price)',def:'35',step:1},{id:'yr',label:'Years you will own it',def:'10',step:1},{id:'ir',label:'Interest rate / cost of money (%)',def:'7',step:0.1},{id:'hr',label:'Hours used per year',def:'300',step:1},{id:'ac',label:'Acres covered per hour',def:'14',step:0.1},{id:'tih',label:'Taxes, insurance & housing (% of price per year)',def:'2',step:0.1},{id:'rm',label:'Repairs & maintenance (% of price per year)',def:'3',step:0.1},{id:'gal',label:'Fuel use (gallons per hour)',def:'9',step:0.1},{id:'dsl',label:'Diesel price ($ per gallon)',def:'3.60',step:0.01},{id:'lab',label:'Operator wage ($ per hour)',def:'22',step:0.5},{id:'mg',label:'Profit & risk margin (%)',def:'15',step:1}],
+demo:{p:'320000',sv:'35',yr:'10',ir:'7',hr:'300',ac:'14',tih:'2',rm:'3',gal:'9',dsl:'3.60',lab:'22',mg:'15'},
+calc:function(v,F){var P=v.p,h=v.hr,a=v.ac,y=v.yr;if(!(P>0)||!(h>0)||!(a>0)||!(y>0))return {hint:'Enter the machine price, hours per year, acres per hour and years of ownership.'};
+ var S=P*(v.sv||0)/100,dep=(P-S)/y,int=(P+S)/2*(v.ir||0)/100,tih=P*(v.tih||0)/100,fixY=dep+int+tih,fixH=fixY/h;
+ var rep=P*(v.rm||0)/100/h,fuel=(v.gal||0)*(v.dsl||0),lube=fuel*0.15,lab=(v.lab||0)*1.1,opH=rep+fuel+lube+lab,totH=fixH+opH,perA=totH/a,mg=(v.mg||0)/100,rateA=perA*(1+mg),rateH=totH*(1+mg);
+ function at(hh){var f=fixY/hh,o=P*(v.rm||0)/100/hh+fuel+lube+lab;return (f+o)/a*(1+mg)}
+ var rows=[['Depreciation',F.money(dep,0),F.money(dep/h),F.money(dep/h/a)],['Interest on investment',F.money(int,0),F.money(int/h),F.money(int/h/a)],['Taxes, insurance, housing',F.money(tih,0),F.money(tih/h),F.money(tih/h/a)],['Repairs & maintenance','',F.money(rep),F.money(rep/a)],['Fuel','',F.money(fuel),F.money(fuel/a)],['Lubrication (15% of fuel)','',F.money(lube),F.money(lube/a)],['Labor (wage + 10% extra time)','',F.money(lab),F.money(lab/a)],['Total cost','',F.money(totH),F.money(perA)],['Rate to charge (+'+F.pct(v.mg||0,0)+' margin)','',F.money(rateH),F.money(rateA)]];
+ var use=[150,300,500,800].map(function(x){return [F.int(x)+' hours / year ('+F.int(x*a)+' acres)',F.money(at(x))+' per acre']});
+ return {kpis:[['Charge per acre',F.money(rateA),'g'],['Charge per hour',F.money(rateH)],['Your cost per acre',F.money(perA)],['Fixed cost per year',F.money(fixY,0)]],tables:[{title:'Cost breakdown',head:['Cost','Per year','Per hour','Per acre'],rows:rows},{title:'How annual use changes your rate',head:['Annual use','Rate to charge'],rows:use}],
+ note:'Fixed costs (depreciation, interest, taxes, insurance, housing) are spread over the hours you use the machine each year, so more custom work lowers your cost per acre. Compare your result with your state extension service custom rate survey (for example Iowa State, MSU, Ohio State or Nebraska) before quoting. Estimate for planning, not financial advice.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

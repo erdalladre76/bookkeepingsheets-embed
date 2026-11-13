@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Booth Rent vs Commission Calculator for Stylists and Barbers – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/booth-rent-vs-commission-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/booth-rent-vs-commission-calculator/";</script>
+</head><body>
+<div id="bs-bo" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/booth-rent-vs-commission-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-bo',key:'bo',title:'Booth Rent vs Commission Calculator',
+inputs:[{id:'sv',label:'Service sales per week ($)',ph:'1800',step:1},{id:'rt',label:'Retail product sales per week ($)',def:'150',step:1},{id:'wk',label:'Weeks you work per year',def:'48',step:1},{id:'cs',label:'Your commission on services (%)',def:'45',step:1},{id:'cr',label:'Your commission on retail (%)',def:'10',step:1},{id:'br',label:'Booth or suite rent per week ($)',def:'250',step:1},{id:'pw',label:'Products & supplies per week, if renting ($)',def:'70',step:1},{id:'sm',label:'Software, card fees & insurance per month, if renting ($)',def:'120',step:1},{id:'cg',label:'Cost of retail products you resell (% of retail price)',def:'50',step:1}],
+demo:{sv:'1800',rt:'150',wk:'48',cs:'45',cr:'10',br:'250',pw:'70',sm:'120',cg:'50'},
+calc:function(v,F){var s=v.sv,w=v.wk;if(!(s>0)||!(w>0))return {hint:'Enter your weekly service sales and weeks worked per year.'};
+ var rt=v.rt||0,S=s*w,R=rt*w;
+ var cGross=S*(v.cs||0)/100+R*(v.cr||0)/100,cFica=cGross*0.0765,cNet=cGross-cFica;
+ var rent=(v.br||0)*52,sup=(v.pw||0)*w,soft=(v.sm||0)*12,cogs=R*(v.cg||0)/100,rRev=S+R,rProfit=rRev-rent-sup-soft-cogs,se=Math.max(0,rProfit)*0.9235*0.153,rNet=rProfit-se;
+ var diff=rNet-cNet,best=diff>=0?'Booth rent':'Commission';
+ var k1=(v.cs||0)/100*0.9235,fixed=rent+soft,var1=(v.pw||0)*w;
+ var a=w*(1-0.153*0.9235)-w*(1-0.0765)*(v.cs||0)/100;
+ var rest=R*(1-(v.cg||0)/100)*(1-0.153*0.9235)-R*(v.cr||0)/100*(1-0.0765)-(rent+sup+soft)*(1-0.153*0.9235);
+ var be=a>0?Math.max(0,-rest/a):NaN;
+ return {kpis:[['Better choice',best,'g'],['Difference per year',F.money(Math.abs(diff),0)],['Commission take-home',F.money(cNet,0)],['Booth rent take-home',F.money(rNet,0)],['Break-even service sales',isFinite(be)?F.money(be,0)+' / week':'-','w']],
+ tables:[{title:'Side by side (per year, before income tax)',head:['','Commission','Booth rent'],rows:[['Service sales',F.money(S,0),F.money(S,0)],['Retail sales',F.money(R,0),F.money(R,0)],['Your pay or revenue',F.money(cGross,0),F.money(rRev,0)],['Booth rent (52 weeks)','-','-'+F.money(rent,0)],['Products & supplies','-','-'+F.money(sup,0)],['Software, fees, insurance','-','-'+F.money(soft,0)],['Cost of retail products','-','-'+F.money(cogs,0)],['Social Security & Medicare','-'+F.money(cFica,0)+' (7.65%)','-'+F.money(se,0)+' (SE tax 15.3%)'],['Take-home before income tax',F.money(cNet,0),F.money(rNet,0)],['Per week worked',F.money(cNet/w,0),F.money(rNet/w,0)]]}],
+ note:'Booth renters are self-employed: they keep all service sales but pay rent every week (even on vacation), buy their own products and pay both halves of Social Security and Medicare (self-employment tax), and they can deduct business expenses. Commission stylists are employees: the salon pays for products and its half of payroll tax, and may offer paid time off or benefits that are not counted here. Income tax is not included because it depends on your whole return. Estimate only, not tax or legal advice.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

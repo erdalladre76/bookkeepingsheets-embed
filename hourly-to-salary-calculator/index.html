@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hourly to Salary Calculator (and Salary to Hourly) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/hourly-to-salary-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/hourly-to-salary-calculator/";</script>
+</head><body>
+<div id="bs-sa" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/hourly-to-salary-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-sa',key:'sa',title:'Hourly to Salary Calculator',
+inputs:[{id:'mode',label:'I know my',type:'select',def:'h',wide:true,opts:[['h','Hourly wage'],['y','Annual salary']]},{id:'amt',label:'Amount ($)',ph:'28',step:0.01},{id:'hpw',label:'Hours per week',def:'40',step:0.5},{id:'wpy',label:'Paid weeks per year',def:'52',step:1},{id:'ot',label:'Overtime hours per week (1.5x)',def:'0',step:0.5}],
+demo:{mode:'h',amt:'28',hpw:'40',wpy:'52',ot:'0'},
+calc:function(v,F){var a=v.amt,h=v.hpw,w=v.wpy,o=v.ot||0;if(!(a>0)||!(h>0)||!(w>0))return {hint:'Enter your pay, hours per week and weeks per year.'};
+ var hr=v.mode==='h'?a:a/(h*w),reg=hr*h*w,ot=hr*1.5*o*w,yr=reg+ot;
+ var rows=[['Hourly',F.money(hr)],['Daily (5-day week)',F.money(yr/w/5)],['Weekly',F.money(yr/w)],['Biweekly',F.money(yr/26)],['Semi-monthly',F.money(yr/24)],['Monthly',F.money(yr/12)],['Quarterly',F.money(yr/4)],['Yearly',F.money(yr)]];
+ var k=[['Annual pay',F.money(yr,0),'g'],['Hourly rate',F.money(hr)],['Monthly',F.money(yr/12)],['Biweekly paycheck',F.money(yr/26)]];if(o)k.push(['Overtime per year',F.money(ot,0),'w']);
+ return {kpis:k,tables:[{title:'Pay by period (before tax)',head:['Period','Gross pay'],rows:rows}],note:'Annual = hourly x hours per week x paid weeks'+(o?' + overtime at 1.5x':'')+'. Gross pay before taxes and deductions; 2,080 hours = 40 hours x 52 weeks.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

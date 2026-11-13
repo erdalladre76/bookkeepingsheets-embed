@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SALT Deduction Cap Calculator 2026: $40,400 Limit, Phase-Down and Itemize vs Standard – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/salt-deduction-cap-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/salt-deduction-cap-calculator/";</script>
+</head><body>
+<div id="bs-salt" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/salt-deduction-cap-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-salt',key:'salt',title:'SALT Deduction Cap Calculator 2026',
+inputs:[{id:'fs',label:'Filing status',type:'select',def:'s',opts:[['s','Single'],['h','Head of household'],['m','Married filing jointly'],['ms','Married filing separately']]},{id:'magi',label:'Modified adjusted gross income, MAGI ($)',ph:'180000',step:1},{id:'inc',label:'State and local income tax paid, or sales tax if you choose it ($)',def:'0',step:1},{id:'prop',label:'Property tax on your home and car ($)',def:'0',step:1},{id:'mort',label:'Mortgage interest ($)',def:'0',step:1},{id:'char',label:'Charitable gifts and other itemized deductions ($)',def:'0',step:1},{id:'rate',label:'Your federal tax bracket (%)',type:'select',def:'24',opts:[['10','10%'],['12','12%'],['22','22%'],['24','24%'],['32','32%'],['35','35%'],['37','37%']]}],
+demo:{fs:'m',magi:'260000',inc:'14800',prop:'9600',mort:'16500',char:'3000',rate:'24'},
+calc:function(v,F){var m=v.magi;if(!(m>=0)||(!v.inc&&!v.prop))return {hint:'Enter your MAGI and the state/local and property taxes you paid.'};
+ var ms=v.fs==='ms',cap=ms?20200:40400,thr=ms?252500:505000,flo=ms?5000:10000;
+ var capA=Math.max(flo,cap-Math.max(0,m-thr)*0.3);
+ var salt=(v.inc||0)+(v.prop||0),saltD=Math.min(salt,capA),lost=salt-saltD;
+ var item=saltD+(v.mort||0)+(v.char||0);
+ var std={s:16100,h:24150,m:32200,ms:16100}[v.fs];
+ var best=Math.max(item,std),useI=item>std,r=(+v.rate||24)/100;
+ var old10=Math.min(salt,ms?5000:10000),itemOld=old10+(v.mort||0)+(v.char||0);
+ var gain=Math.max(0,best-Math.max(itemOld,std))*r;
+ var k=[['Your 2026 SALT cap',F.money(capA,0),capA<cap?'w':''],['SALT you can deduct',F.money(saltD,0),'g'],['Itemized total',F.money(item,0)],['Standard deduction',F.money(std,0)],['Better choice',useI?'Itemize':'Standard deduction',useI?'g':''],['Tax saved vs the old $10,000 cap',F.money(gain,0),'g']];
+ if(lost>0)k.push(['SALT over the cap (not deductible)',F.money(lost,0),'w']);
+ var rows=[['State and local income/sales tax',F.money(v.inc||0,0)],['Property tax',F.money(v.prop||0,0)],['Total SALT paid',F.money(salt,0)],['Cap after income phase-down',F.money(capA,0)],['Deductible SALT',F.money(saltD,0)],['Mortgage interest',F.money(v.mort||0,0)],['Charity and other',F.money(v.char||0,0)],['Total itemized deductions',F.money(item,0)],['2026 standard deduction',F.money(std,0)]];
+ var yrs=[['2025','$40,000','$500,000'],['2026','$40,400','$505,000'],['2027','$40,804','$510,050'],['2028','$41,212','$515,151'],['2029','$41,624','$520,302'],['2030 on','$10,000','none']];
+ return {kpis:k,tables:[{title:'Your 2026 SALT and itemized deductions',head:['Item','Amount'],rows:rows},{title:'SALT cap by year (half for married filing separately)',head:['Tax year','Cap','Phase-down starts (MAGI)'],rows:yrs}],
+ note:'The cap drops by 30% of your MAGI above the threshold but never below $10,000 ($5,000 married filing separately). SALT means state and local income tax (or general sales tax instead) plus real estate and personal property taxes; it does not include federal tax, gas tax or fees. You only benefit if your itemized total beats the standard deduction. Estimate only, not tax advice.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

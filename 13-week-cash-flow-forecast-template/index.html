@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free 13-Week Cash Flow Forecast Template (Excel &amp; Google Sheets) + Example – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/13-week-cash-flow-forecast-template/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/13-week-cash-flow-forecast-template/";</script>
+</head><body>
+<div id="bs-cf" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/13-week-cash-flow-forecast-template/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-cf',key:'cf',title:'13-Week Cash Flow Forecast Calculator',
+inputs:[{id:'ob',label:'Bank balance today ($)',ph:'15000',step:1},{id:'rc',label:'Customer receipts per week ($)',def:'7800',step:1},{id:'gr',label:'Weekly change in receipts (%)',def:'0',step:0.1},{id:'ar',label:'Overdue invoices you expect to collect ($)',def:'5000',step:1},{id:'aw',label:'...collected in week #',def:'10',step:1},{id:'py',label:'Payroll per pay run ($)',def:'8500',step:1},{id:'pf',label:'Payroll frequency',type:'select',opts:[['2','Every 2 weeks'],['1','Every week']],def:'2'},{id:'rt',label:'Rent & loan payments per month ($)',def:'3200',step:1},{id:'op',label:'Other costs per week: suppliers, software, fuel ($)',def:'2400',step:1},{id:'tx',label:'Tax or other one-off payment ($)',def:'6500',step:1},{id:'tw',label:'...paid in week #',def:'8',step:1},{id:'bf',label:'Minimum cash buffer ($)',def:'8000',step:1}],
+demo:{ob:'15000',rc:'7800',gr:'0',ar:'5000',aw:'10',py:'8500',pf:'2',rt:'3200',op:'2400',tx:'6500',tw:'8',bf:'8000'},
+calc:function(v,F){if(!(v.ob>=0)||v.ob===''||isNaN(v.ob))return {hint:'Enter your bank balance today to start the 13-week forecast.'};
+ var bal=+v.ob||0,rows=[],low=1e18,lowW=0,below=0,tr=0,tp=0,pf=(+v.pf||2),g=(+v.gr||0)/100,first=0;
+ for(var w=1;w<=13;w++){var rec=(+v.rc||0)*Math.pow(1+g,w-1);if(w===Math.round(+v.aw||0))rec+=(+v.ar||0);
+  var pay=(+v.op||0);var pr=((w-1)%pf===0)?(+v.py||0):0;var rent=(w%4===1)?(+v.rt||0):0;var one=(w===Math.round(+v.tw||0))?(+v.tx||0):0;
+  var out=pay+pr+rent+one,net=rec-out,open=bal;bal+=net;tr+=rec;tp+=out;
+  if(bal<low){low=bal;lowW=w}if(bal<(+v.bf||0)){below++;if(!first)first=w}
+  rows.push(['Week '+w,F.money(open,0),F.money(rec,0),'-'+F.money(out,0),(net<0?'-':'')+F.money(Math.abs(net),0),(bal<(+v.bf||0)?'⚠ ':'')+F.money(bal,0)])}
+ var st=below?'Below buffer in '+below+' week'+(below>1?'s':''):'Never below buffer';
+ return {kpis:[['Lowest balance',F.money(low,0)+' (week '+lowW+')',low<(+v.bf||0)?'w':'g'],['Cash in week 13',F.money(bal,0)],['Total in / out',F.money(tr,0)+' / '+F.money(tp,0)],['Buffer check',st,below?'w':'g']],
+ tables:[{title:'Your 13-week cash flow forecast',head:['Week','Opening cash','Cash in','Cash out','Net','Closing cash'],rows:rows}],
+ note:(below?'Cash drops below your '+F.money(+v.bf||0,0)+' buffer first in week '+first+'. Act before then: chase overdue invoices, ask key customers for faster payment, move a supplier payment, or arrange a line of credit now while your numbers look fine. ':'Your cash stays above your buffer for all 13 weeks. ')+'Rent and loan payments are placed in weeks 1, 5, 9 and 13; payroll starts in week 1. Download the Excel template on this page to enter exact amounts week by week. Planning estimate only.'}}});</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

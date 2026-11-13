@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lawn Mowing Price Calculator: What to Charge per Cut – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/lawn-mowing-price-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/lawn-mowing-price-calculator/";</script>
+</head><body>
+<div id="bs-lw" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/lawn-mowing-price-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-lw',key:'lw',title:'Lawn Mowing Price Calculator',
+inputs:[{id:'sf',label:'Lawn area to mow (square feet)',ph:'8000',step:100},{id:'mw',label:'Mower',type:'select',opts:[['10000','21-inch push mower (~10,000 sq ft/hr)'],['20000','36–48 inch walk-behind (~20,000 sq ft/hr)'],['40000','52–60 inch zero-turn (~40,000 sq ft/hr)']],def:'20000'},{id:'tr',label:'Trim, edge & blow (minutes per visit)',def:'15',step:1},{id:'tv',label:'Drive time to the job (minutes)',def:'10',step:1},{id:'cr',label:'Crew size',def:'1',step:1},{id:'wg',label:'Pay per worker per hour ($)',def:'18',step:0.5},{id:'eq',label:'Fuel & equipment cost per hour ($)',def:'12',step:0.5},{id:'oh',label:'Overhead: insurance, truck, ads (% of price)',def:'15',step:1},{id:'mg',label:'Profit margin (% of price)',def:'20',step:1},{id:'mn',label:'Minimum charge per visit ($)',def:'40',step:1},{id:'sn',label:'Visits per season',def:'28',step:1}],
+demo:{sf:'8000',mw:'20000',tr:'15',tv:'10',cr:'1',wg:'18',eq:'12',oh:'15',mg:'20',mn:'40',sn:'28'},
+calc:function(v,F){var sf=v.sf;if(!(sf>0))return {hint:'Enter the lawn area in square feet (an acre is 43,560 sq ft).'};
+ var cr=Math.max(1,v.cr||1),mw=+v.mw||20000,mow=sf/mw,trim=(v.tr||0)/60,trav=(v.tv||0)/60,ph=mow+trim+trav,onsite=(mow+trim)/cr;
+ var labor=ph*(v.wg||0)*1.12,eq=(onsite+trav)*(v.eq||0),cost=labor+eq,k=1-((v.oh||0)+(v.mg||0))/100;if(k<=0.05)return {hint:'Overhead plus margin must be well under 100%.'};
+ var raw=cost/k,price=Math.max(v.mn||0,Math.ceil(raw/5)*5),hr=price/((onsite+trav)||1);
+ var sizes=[5000,10000,21780,43560].map(function(s){var p=s/mw+trim+trav,c=p*(v.wg||0)*1.12+((s/mw+trim)/cr+trav)*(v.eq||0);return [F.int(s)+' sq ft'+(s===21780?' (½ acre)':s===43560?' (1 acre)':''),F.money(Math.max(v.mn||0,Math.ceil(c/k/5)*5),0)]});
+ return {kpis:[['Price per cut',F.money(price,0),'g'],['Per month (weekly)',F.money(price*52/12,0)],['Per season',F.money(price*(v.sn||0),0)],['Revenue per crew hour',F.money(hr,0),'w']],
+ tables:[{title:'How the price is built',head:['Item','Amount'],rows:[['Mowing time',(mow*60).toFixed(0)+' person-minutes'],['Trim, edge & blow',(trim*60).toFixed(0)+' person-minutes'],['Drive time',(trav*60).toFixed(0)+' minutes'],['Time on site with '+cr+' worker'+(cr>1?'s':''),(onsite*60).toFixed(0)+' minutes'],['Labor incl. 12% payroll costs',F.money(labor,2)],['Fuel & equipment',F.money(eq,2)],['Job cost',F.money(cost,2)],['Price before rounding',F.money(raw,2)],['Price (rounded up to $5, minimum '+F.money(v.mn||0,0)+')',F.money(price,0)]]},
+ {title:'Price by lawn size (same settings)',head:['Lawn size','Price per cut'],rows:sizes}],
+ note:'Mowing speed depends on the mower, obstacles and slopes; time a few of your own lawns and adjust. Price add-ons like leaf cleanup, aeration, mulch and hedge trimming separately by time. Planning estimate only.'}}});</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

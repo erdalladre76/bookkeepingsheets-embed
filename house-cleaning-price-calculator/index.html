@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>House Cleaning Price Calculator: What to Charge per Clean – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/house-cleaning-price-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/house-cleaning-price-calculator/";</script>
+</head><body>
+<div id="bs-cl" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/house-cleaning-price-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-cl',key:'cl',title:'House Cleaning Price Calculator',
+inputs:[{id:'sf',label:'Home size (square feet)',ph:'2000',step:10},{id:'bd',label:'Bedrooms',def:'3',step:1},{id:'ba',label:'Bathrooms',def:'2',step:0.5},{id:'ty',label:'Type of clean',type:'select',opts:[['1','Standard / recurring'],['1.6','Deep clean'],['1.8','Move-in / move-out']],def:'1'},{id:'fq',label:'How often',type:'select',opts:[['26','Every 2 weeks'],['52','Weekly'],['12','Monthly'],['1','One time']],def:'26'},{id:'wg',label:'Cleaner pay per hour ($)',def:'20',step:0.5},{id:'cn',label:'Cleaners on the job',def:'2',step:1},{id:'sp',label:'Supplies per job ($)',def:'8',step:0.5},{id:'tv',label:'Travel time per job (minutes)',def:'20',step:1},{id:'oh',label:'Overhead: insurance, ads, software (% of price)',def:'10',step:1},{id:'mg',label:'Profit margin (% of price)',def:'15',step:1}],
+demo:{sf:'2000',bd:'3',ba:'2',ty:'1',fq:'26',wg:'20',cn:'2',sp:'8',tv:'20',oh:'10',mg:'15'},
+calc:function(v,F){var sf=v.sf;if(!(sf>0))return {hint:'Enter the home size in square feet.'};
+ var cn=Math.max(1,v.cn||1),ty=+v.ty||1,fq=+v.fq||26;var fm=fq===52?0.85:fq===26?1:fq===12?1.15:1.3;
+ var ph=(sf/600+(v.ba||0)*0.5+(v.bd||0)*0.25)*ty*fm,on=ph/cn,tr=(v.tv||0)/60*cn,labor=(ph+tr)*(v.wg||0)*1.12,cost=labor+(v.sp||0);
+ var k=1-((v.oh||0)+(v.mg||0))/100;if(k<=0.05)return {hint:'Overhead plus margin must be well under 100%.'};
+ var price=Math.ceil(cost/k/5)*5,profit=price-cost-price*(v.oh||0)/100,per=fq>1?price*fq/12:price;
+ return {kpis:[['Price per clean',F.money(price,0),'g'],['Time in the home',(Math.round(on*4)/4)+' hrs with '+cn+' cleaner'+(cn>1?'s':'')],['Price per sq ft',F.money(price/sf,3)],[fq>1?'Per month':'Profit this job',fq>1?F.money(per,0):F.money(profit,0),'w']],
+ tables:[{title:'How the price is built',head:['Item','Amount'],rows:[['Cleaning time','~'+ph.toFixed(1)+' person-hours'],['Travel time',tr.toFixed(1)+' person-hours'],['Labor incl. 12% payroll costs',F.money(labor,2)],['Supplies',F.money(v.sp||0,2)],['Job cost',F.money(cost,2)],['Overhead ('+F.pct(v.oh||0,0)+')',F.money(price*(v.oh||0)/100,2)],['Profit',F.money(profit,2)],['Price (rounded up to $5)',F.money(price,0)]]},
+ {title:'Same home, other services',head:['Service','Price'],rows:[['Standard',1],['Deep clean',1.6],['Move-in / move-out',1.8]].map(function(s){var p2=(sf/600+(v.ba||0)*0.5+(v.bd||0)*0.25)*s[1]*fm,c2=(p2+tr)*(v.wg||0)*1.12+(v.sp||0);return [s[0],F.money(Math.ceil(c2/k/5)*5,0)]})}],
+ note:'Time estimate: about 600 sq ft per person-hour for a standard clean, plus 30 minutes per bathroom and 15 per bedroom; weekly homes stay cleaner (15% less time), monthly and one-time cleans take longer. Time a few real jobs and adjust. Planning estimate only.'}}});</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

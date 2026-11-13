@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dependent Care FSA vs Child Care Credit Calculator 2026 ($7,500 FSA, New 50% Credit) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/dependent-care-fsa-vs-child-care-credit-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/dependent-care-fsa-vs-child-care-credit-calculator/";</script>
+</head><body>
+<div id="bs-dc" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/dependent-care-fsa-vs-child-care-credit-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-dc',key:'dc',title:'Dependent Care FSA vs Child Care Credit Calculator 2026',
+inputs:[{id:'fs',label:'Filing status',type:'select',def:'m',opts:[['s','Single or head of household'],['m','Married filing jointly']]},{id:'agi',label:'Adjusted gross income, AGI ($)',ph:'95000',step:1},{id:'kids',label:'Children under 13 (or dependents who can\'t care for themselves)',type:'select',def:'1',opts:[['1','One'],['2','Two or more']]},{id:'exp',label:'Child care costs for the year ($)',ph:'12000',step:1},{id:'fsa',label:'Dependent care FSA you plan to use ($, max 7,500)',def:'7500',step:1},{id:'rate',label:'Your federal tax bracket (%)',type:'select',def:'22',opts:[['10','10%'],['12','12%'],['22','22%'],['24','24%'],['32','32%'],['35','35%']]},{id:'st',label:'State income tax rate (%)',def:'5',step:0.1}],
+demo:{fs:'m',agi:'95000',kids:'1',exp:'12000',fsa:'7500',rate:'22',st:'5'},
+calc:function(v,F){var a=v.agi,e=v.exp;if(!(a>=0)||!(e>0))return {hint:'Enter your AGI and your child care costs.'};
+ var j=v.fs==='m';
+ function pct(x){var p=50-Math.ceil(Math.max(0,x-15000)/2000);p=Math.max(35,p);var t=j?150000:75000,s=j?4000:2000;if(x>t)p=Math.max(20,p-Math.ceil((x-t)/s));return Math.min(50,p)}
+ var p=pct(a)/100,lim=v.kids==='2'?6000:3000;
+ var fsa=Math.min(Math.max(0,v.fsa||0),7500,e);
+ var fr=(+v.rate||22)/100,sr=(v.st||0)/100;
+ var fsaSave=fsa*(fr+0.0765+sr);
+ var left=Math.max(0,Math.min(lim-fsa,e-fsa)),cr1=left*p;
+ var crOnly=Math.min(lim,e)*p;
+ var both=fsaSave+cr1;
+ var best=both>=crOnly?'Use the FSA (plus any credit left)':'Skip the FSA, take the credit';
+ var k=[['Best option',best,'g'],['FSA + credit savings',F.money(both,0),both>=crOnly?'g':''],['Credit only savings',F.money(crOnly,0),both<crOnly?'g':''],['Your credit rate',Math.round(p*100)+'%'],['Difference',F.money(Math.abs(both-crOnly),0)]];
+ var rows=[['Child care costs',F.money(e,0),F.money(e,0)],['Paid through the FSA (pre-tax)',F.money(fsa,0),'$0'],['Tax saved on FSA money','≈'+F.money(fsaSave,0)+' (federal '+Math.round(fr*100)+'% + FICA 7.65% + state)','$0'],['Expenses left for the credit',F.money(left,0),F.money(Math.min(lim,e),0)],['Credit at '+Math.round(p*100)+'%',F.money(cr1,0),F.money(crOnly,0)],['Total tax saved',F.money(both,0),F.money(crOnly,0)]];
+ var sched=[['$15,000 or less','50%'],['$15,001 - $43,000','49% down to 36% (1 point per $2,000)'],['$43,001 - '+(j?'$150,000':'$75,000'),'35%'],[j?'Over $150,000':'Over $75,000','down 1 point per '+(j?'$4,000':'$2,000')+' to 20%']];
+ return {kpis:k,tables:[{title:'Side by side',head:['','FSA + credit','Credit only'],rows:rows},{title:'2026 child and dependent care credit rate by AGI',head:['AGI','Credit rate'],rows:sched}],
+ note:'2026 rules: dependent care FSA limit $7,500 per household ($3,750 married filing separately); credit on up to $3,000 of costs for one child or $6,000 for two or more, reduced dollar for dollar by FSA money. The credit is nonrefundable, so it can\'t be more than your federal income tax. FSA money is use-it-or-lose-it. Estimate only, not tax advice.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

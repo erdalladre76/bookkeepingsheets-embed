@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Percentage Calculator: Percent Increase, Decrease, Change &amp; Percent Of – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/percentage-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/percentage-calculator/";</script>
+</head><body>
+<div id="bs-pc" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/percentage-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-pc',key:'pc',title:'Percentage Calculator',
+inputs:[{id:'mode',label:'Calculation',type:'select',def:'of',wide:true,opts:[['of','What is X% of Y?'],['is','X is what percent of Y?'],['chg','Percent change from X to Y'],['inc','Increase Y by X%'],['dec','Decrease Y by X%']]},{id:'x',label:'X',ph:'15',step:'any'},{id:'y',label:'Y',ph:'240',step:'any'}],
+demo:{mode:'of',x:'15',y:'240'},
+calc:function(v,F){var x=v.x,y=v.y;if(!isFinite(x)||!isFinite(y))return {hint:'Enter X and Y.'};function n(z){return (Math.round(z*10000)/10000).toLocaleString('en-US',{maximumFractionDigits:4})}
+ var res,lab,f;if(v.mode==='of'){res=x/100*y;lab=n(x)+'% of '+n(y);f=n(x)+' / 100 x '+n(y)+' = '+n(res);res=n(res)}
+ else if(v.mode==='is'){if(!y)return {error:'Y cannot be zero.'};res=x/y*100;lab=n(x)+' is this % of '+n(y);f=n(x)+' / '+n(y)+' x 100 = '+n(res)+'%';res=n(res)+'%'}
+ else if(v.mode==='chg'){if(!x)return {error:'X cannot be zero for percent change.'};res=(y-x)/Math.abs(x)*100;lab='Change from '+n(x)+' to '+n(y);f='('+n(y)+' - '+n(x)+') / '+n(Math.abs(x))+' x 100 = '+n(res)+'%';res=(res>0?'+':'')+n(res)+'%'}
+ else if(v.mode==='inc'){res=y*(1+x/100);lab=n(y)+' increased by '+n(x)+'%';f=n(y)+' x (1 + '+n(x)+'/100) = '+n(res);res=n(res)}
+ else {res=y*(1-x/100);lab=n(y)+' decreased by '+n(x)+'%';f=n(y)+' x (1 - '+n(x)+'/100) = '+n(res);res=n(res)}
+ return {kpis:[[lab,res,'g']],tables:[{title:'How it was calculated',head:['Formula'],rows:[[f]]}]}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

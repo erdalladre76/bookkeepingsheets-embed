@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quarterly Estimated Tax Calculator for Self-Employed (2026) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/quarterly-estimated-tax-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/quarterly-estimated-tax-calculator/";</script>
+</head><body>
+<div id="bs-qt" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/quarterly-estimated-tax-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-qt',key:'qt',title:'Quarterly Estimated Tax Calculator (2026)',
+inputs:[{id:'se',label:'Expected 2026 self-employment profit ($)',ph:'60000',step:100},{id:'fs',label:'Filing status',type:'select',def:'s',opts:[['s','Single'],['m','Married filing jointly'],['h','Head of household']]},{id:'w2',label:'W-2 wages, if any ($)',def:'0',step:100},{id:'oth',label:'Other taxable income ($)',def:'0',step:100},{id:'wh',label:'Federal tax withheld from W-2 pay ($)',def:'0',step:10},{id:'py',label:'Your total 2025 federal tax ($, optional)',def:'',step:10},{id:'hi',label:'2025 AGI over $150,000?',type:'select',def:'n',opts:[['n','No'],['y','Yes']]},{id:'paid',label:'Estimated payments already made ($)',def:'0',step:10}],
+demo:{se:'60000',fs:'s',w2:'0',oth:'0',wh:'0',py:'',hi:'n',paid:'0'},
+calc:function(v,F){var se=v.se||0,w2=v.w2||0;if(!(se>0))return {hint:'Enter the profit you expect from self-employment this year.'};
+ var BR={s:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[1e15,.37]],m:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[1e15,.37]],h:[[17700,.10],[67450,.12],[105700,.22],[201750,.24],[256200,.32],[640600,.35],[1e15,.37]]},SD={s:16100,m:32200,h:24150},AM={s:200000,m:250000,h:200000};
+ function tax(x,b){var t=0,lo=0;for(var i=0;i<b.length;i++){if(x>lo)t+=(Math.min(x,b[i][0])-lo)*b[i][1];lo=b[i][0]}return t}
+ var nb=se*.9235,ok=nb>=400,ssT=ok?.124*Math.min(nb,Math.max(0,184500-w2)):0,mdT=ok?.029*nb:0,seT=ssT+mdT,add=ok?.009*Math.max(0,w2+nb-Math.max(w2,AM[v.fs])):0,half=seT/2;
+ var agi=se+w2+(v.oth||0)-half,pre=Math.max(0,agi-SD[v.fs]),qbi=Math.min(.2*Math.max(0,se-half),.2*pre),ti=Math.max(0,pre-qbi),it=tax(ti,BR[v.fs]),tot=it+seT+add;
+ var cur=.9*tot,pyv=isFinite(v.py)&&v.py>=0&&v.py!==''?v.py*(v.hi==='y'?1.1:1):Infinity,req=Math.max(0,Math.min(cur,pyv)-(v.wh||0)),q=req/4,left=Math.max(0,req-(v.paid||0));
+ var D=[['Q1 (Jan to Mar 2026)','April 15, 2026'],['Q2 (Apr to May 2026)','June 15, 2026'],['Q3 (Jun to Aug 2026)','September 15, 2026'],['Q4 (Sep to Dec 2026)','January 15, 2027']];
+ return {kpis:[['Each quarterly payment',F.money(q),'g'],['Total 2026 tax estimate',F.money(tot)],['Self-employment tax',F.money(seT)],['Still to pay this year',F.money(left),left>0?'w':'g']],
+ tables:[{title:'How the estimate is built',head:['Item','Amount'],rows:[['Self-employment profit',F.money(se)],['Self-employment tax (15.3% on 92.35%)',F.money(seT)],['Deduction for half of SE tax',F.money(-half)],['Standard deduction',F.money(-SD[v.fs])],['QBI deduction (20%, simplified)',F.money(-qbi)],['Taxable income',F.money(ti)],['Federal income tax',F.money(it)],['Additional Medicare tax',F.money(add)],['Total federal tax',F.money(tot)],['Less W-2 withholding',F.money(-(v.wh||0))],['Required through estimates'+(pyv<cur?' (prior-year safe harbor)':' (90% of this year)'),F.money(req)]],hl:10},
+ {title:'2026 payment schedule',head:['Period','Due date','Payment'],rows:D.map(function(d){return [d[0],d[1],F.money(q)]}),foot:['Total','',F.money(req)]}],
+ note:'Uses 2026 brackets, the standard deduction and the $184,500 Social Security wage base. To avoid an underpayment penalty, pay at least 90% of this year’s tax or 100% of last year’s (110% if your AGI was over $150,000). State estimated taxes are separate.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

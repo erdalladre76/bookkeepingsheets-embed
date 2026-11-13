@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Airbnb Host Profit Calculator (With the 15.5% Host-Only Fee) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/airbnb-host-profit-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/airbnb-host-profit-calculator/";</script>
+</head><body>
+<div id="bs-ab" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/airbnb-host-profit-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-ab',key:'ab',title:'Airbnb Host Profit Calculator',
+inputs:[{id:'nr',label:'Average nightly rate ($)',ph:'150',step:1},{id:'oc',label:'Occupancy (% of nights booked)',def:'65',step:1},{id:'st',label:'Average stay (nights)',def:'3',step:0.5},{id:'cf',label:'Cleaning fee you charge per stay ($)',def:'85',step:1},{id:'af',label:'Airbnb fee',type:'select',opts:[['15.5','Host-only fee 15.5%'],['3','Split fee 3% (if you still have it)']],def:'15.5'},{id:'cc',label:'Cleaning cost per turnover ($)',def:'75',step:1},{id:'sp',label:'Supplies per stay: toiletries, coffee, laundry ($)',def:'15',step:1},{id:'mg',label:'Rent or mortgage per month ($)',def:'1800',step:1},{id:'ut',label:'Utilities & internet per month ($)',def:'250',step:1},{id:'in',label:'Insurance per month ($)',def:'80',step:1},{id:'sw',label:'Software, permits & other per month ($)',def:'40',step:1},{id:'fu',label:'Furniture & linens replacement per year ($)',def:'1200',step:1},{id:'pm',label:'Co-host / manager (% of payout, 0 if none)',def:'0',step:1}],
+demo:{nr:'150',oc:'65',st:'3',cf:'85',af:'15.5',cc:'75',sp:'15',mg:'1800',ut:'250',in:'80',sw:'40',fu:'1200',pm:'0'},
+calc:function(v,F){var nr=v.nr,st=Math.max(1,v.st||1);if(!(nr>0))return {hint:'Enter your average nightly rate.'};
+ function run(oc){var n=30.42*oc/100,s=n/st,rent=n*nr,cl=s*(v.cf||0),gross=rent+cl,fee=gross*(+v.af||0)/100,pay=gross-fee,pmf=pay*(v.pm||0)/100,var1=s*((v.cc||0)+(v.sp||0)),fix=(v.mg||0)+(v.ut||0)+(v.in||0)+(v.sw||0)+(v.fu||0)/12,pf=pay-pmf-var1-fix;return {n:n,s:s,rent:rent,cl:cl,gross:gross,fee:fee,pay:pay,pmf:pmf,var1:var1,fix:fix,pf:pf}}
+ var r=run(v.oc||0),a=0,b=100;for(var i=0;i<50;i++){var m=(a+b)/2;if(run(m).pf>=0)b=m;else a=m}var be=run(100).pf<0?NaN:b;
+ return {kpis:[['Profit per month',F.money(r.pf,0),r.pf>=0?'g':'w'],['Profit per year',F.money(r.pf*12,0)],['Airbnb fees per month',F.money(r.fee,0)],['Break-even occupancy',isFinite(be)?F.pct(be,0):'Not reachable','w']],
+ tables:[{title:'Monthly breakdown',head:['Item','Per month'],rows:[['Nights booked',r.n.toFixed(1)+' nights'],['Stays',r.s.toFixed(1)],['Nightly revenue',F.money(r.rent,0)],['Cleaning fees charged',F.money(r.cl,0)],['Airbnb fee ('+F.pct(+v.af||0,1)+')','-'+F.money(r.fee,0)],['Your payout',F.money(r.pay,0)],['Co-host / manager','-'+F.money(r.pmf,0)],['Cleaning & supplies','-'+F.money(r.var1,0)],['Rent/mortgage, utilities, insurance, other','-'+F.money(r.fix,0)],['Profit before income tax',F.money(r.pf,0)]]},
+ {title:'Profit at other occupancy rates',head:['Occupancy','Profit per month'],rows:[40,50,60,70,80].map(function(o){return [F.pct(o,0),F.money(run(o).pf,0)]})}],
+ note:'Airbnb\'s host-only fee is charged on the booking subtotal (nightly rate plus cleaning and other fees you set). Occupancy tax collected by Airbnb is not included. Profit is before income tax; depreciation and other deductions can lower your taxes. Check local short-term rental rules and permits. Estimate only.'}}});</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

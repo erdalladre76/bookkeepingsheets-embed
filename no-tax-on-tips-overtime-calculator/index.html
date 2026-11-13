@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>No Tax on Tips &amp; Overtime Calculator (Plus Car Loan Interest and Senior Deduction) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/no-tax-on-tips-overtime-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/no-tax-on-tips-overtime-calculator/";</script>
+</head><body>
+<div id="bs-ob" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/no-tax-on-tips-overtime-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-ob',key:'ob',title:'No Tax on Tips, Overtime & Car Loan Interest Calculator',
+inputs:[{id:'fs',label:'Filing status',type:'select',def:'s',opts:[['s','Single or head of household'],['m','Married filing jointly']]},{id:'magi',label:'Modified adjusted gross income, MAGI ($)',ph:'68000',step:1},{id:'tips',label:'Qualified tips received ($)',def:'0',step:1},{id:'otp',label:'Overtime premium: the extra "half" ($)',def:'0',step:1},{id:'ott',label:'or total overtime pay at 1.5x ($)',def:'0',step:1},{id:'car',label:'Interest paid on a new US-assembled car loan ($)',def:'0',step:1},{id:'sen',label:'People age 65+ on the return',type:'select',def:'0',opts:[['0','None'],['1','One'],['2','Two (both spouses)']]},{id:'rate',label:'Your federal tax bracket (%)',type:'select',def:'12',opts:[['10','10%'],['12','12%'],['22','22%'],['24','24%'],['32','32%'],['35','35%']]}],
+demo:{fs:'s',magi:'68000',tips:'14200',otp:'0',ott:'6000',car:'1850',sen:'0',rate:'12'},
+calc:function(v,F){var m=v.magi;if(!(m>=0)||(!v.tips&&!v.otp&&!v.ott&&!v.car&&v.sen==='0'))return {hint:'Enter your MAGI and at least one of tips, overtime, car loan interest or age 65+.'};
+ var j=v.fs==='m';
+ function cut(over,per){return over>0?Math.floor(over/1000)*per:0}
+ var tipT=j?300000:150000,tipsCap=Math.min(v.tips||0,25000),tipsRed=cut(m-tipT,100),tipsD=Math.max(0,tipsCap-tipsRed);
+ var prem=(v.otp||0)>0?v.otp:(v.ott||0)/3,otMax=j?25000:12500,otCap=Math.min(prem,otMax),otD=Math.max(0,otCap-cut(m-tipT,100));
+ var carT=j?200000:100000,carCap=Math.min(v.car||0,10000),carD=Math.max(0,carCap-cut(m-carT,200));
+ var n=+v.sen||0,senT=j?150000:75000,senD=Math.max(0,6000*n-Math.max(0,m-senT)*0.06*(n?1:0));
+ if(n===2&&!j){n=1;senD=Math.max(0,6000-Math.max(0,m-senT)*0.06)}
+ var tot=tipsD+otD+carD+senD,r=(+v.rate||12)/100,sav=tot*r;
+ var rows=[['No tax on tips',F.money(v.tips||0,0),F.money(tipsCap,0),F.money(tipsD,0)],['No tax on overtime (premium)',F.money(prem,0),F.money(otCap,0),F.money(otD,0)],['Car loan interest',F.money(v.car||0,0),F.money(carCap,0),F.money(carD,0)],['Senior deduction (65+)',n?n+' person'+(n>1?'s':''):'-',F.money(6000*n,0),F.money(senD,0)],['Total new deductions','','',F.money(tot,0)]];
+ var lim=[['Tips','$25,000','$150,000','$300,000','$100 per $1,000 over'],['Overtime premium',j?'$25,000 joint':'$12,500','$150,000','$300,000','$100 per $1,000 over'],['Car loan interest','$10,000','$100,000','$200,000','$200 per $1,000 over'],['Seniors 65+','$6,000 each','$75,000','$150,000','6% of MAGI over']];
+ var k=[['Total extra deductions',F.money(tot,0),'g'],['Estimated tax saved',F.money(sav,0),'g'],['Tips + overtime',F.money(tipsD+otD,0)],['Car loan + senior',F.money(carD+senD,0)]];
+ if(tipsRed>0||m>carT)k.push(['Income phase-out applied','Yes','w']);
+ return {kpis:k,tables:[{title:'Your deductions (Schedule 1-A)',head:['Deduction','You entered','Up to the cap','Deductible'],rows:rows},{title:'2025-2028 limits and income phase-outs',head:['Deduction','Max','Phase-out starts (single)','(joint)','Reduction'],rows:lim}],
+ note:'For tax years 2025 to 2028. You can take these deductions with the standard deduction (no need to itemize). They lower federal income tax only, not Social Security, Medicare or most state taxes. Tips must be in an IRS-listed occupation; overtime counts only the premium above your regular rate required by the FLSA; married couples must file jointly and have valid Social Security numbers. Car interest: new vehicle under 14,000 lbs, final assembly in the US, bought after 2024 for personal use, loan secured by the car (no leases). Estimate only, not tax advice.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paycheck Calculator 2026: Take-Home Pay After Taxes – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/paycheck-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/paycheck-calculator/";</script>
+</head><body>
+<div id="bs-pk" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/paycheck-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-pk',key:'pk',title:'Paycheck Calculator (2026)',
+inputs:[{id:'pay',label:'Gross pay per paycheck ($)',ph:'2500',step:0.01},{id:'freq',label:'Pay frequency',type:'select',def:'26',opts:[['52','Weekly'],['26','Every two weeks'],['24','Twice a month'],['12','Monthly']]},{id:'fs',label:'Filing status',type:'select',def:'s',opts:[['s','Single'],['m','Married filing jointly'],['h','Head of household']]},{id:'k',label:'401(k) / pre-tax retirement per paycheck ($)',def:'0',step:1},{id:'hc',label:'Pre-tax health, dental, HSA per paycheck ($)',def:'0',step:1},{id:'st',label:'State income tax rate (%, estimate)',def:'0',step:0.01},{id:'post',label:'After-tax deductions per paycheck ($)',def:'0',step:1},{id:'xw',label:'Extra federal withholding per paycheck ($)',def:'0',step:1}],
+demo:{pay:'2500',freq:'26',fs:'s',k:'150',hc:'80',st:'4.5',post:'0',xw:'0'},
+calc:function(v,F){var p=v.pay,f=+v.freq||26;if(!(p>0))return {hint:'Enter your gross pay per paycheck.'};
+ var BR={s:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[1e15,.37]],m:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[1e15,.37]],h:[[17700,.10],[67450,.12],[105700,.22],[201750,.24],[256200,.32],[640600,.35],[1e15,.37]]},SD={s:16100,m:32200,h:24150},AM={s:200000,m:250000,h:200000};
+ function tax(x,b){var t=0,lo=0;for(var i=0;i<b.length;i++){if(x>lo)t+=(Math.min(x,b[i][0])-lo)*b[i][1];lo=b[i][0]}return t}
+ var k=v.k||0,hc=v.hc||0,G=p*f,K=k*f,HC=hc*f,ti=Math.max(0,G-K-HC-SD[v.fs]),fed=tax(ti,BR[v.fs])+(v.xw||0)*f,fw=G-HC,ss=.062*Math.min(fw,184500),md=.0145*fw+.009*Math.max(0,fw-AM[v.fs]),sti=Math.max(0,G-K-HC)*(v.st||0)/100,post=(v.post||0)*f,net=G-K-HC-fed-ss-md-sti-post;
+ var rows=[['Gross pay',G],['401(k) / retirement',-K],['Health, dental, HSA',-HC],['Federal income tax',-fed],['Social Security (6.2%)',-ss],['Medicare (1.45%)',-md],['State income tax',-sti],['After-tax deductions',-post],['Take-home pay',net]].map(function(r){return [r[0],F.money(r[1]/f),F.money(r[1])]});
+ return {kpis:[['Take-home per paycheck',F.money(net/f),'g'],['Federal income tax',F.money(fed/f)],['Social Security & Medicare',F.money((ss+md)/f)],['Take-home per year',F.money(net,0),'g']],tables:[{title:'Paycheck breakdown',head:['Item','Per paycheck','Per year'],rows:rows,hl:8}],note:'Estimate using 2026 federal brackets and the standard deduction ($'+SD[v.fs].toLocaleString('en-US')+'), for a 2020-or-later W-4 with no extra adjustments. Federal taxable wages: '+F.money(ti/f)+' per paycheck. It does not include tax credits, the new tips or overtime deductions, or local taxes.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

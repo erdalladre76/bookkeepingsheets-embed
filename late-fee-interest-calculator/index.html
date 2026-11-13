@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Late Fee Calculator: Interest on Overdue Invoices &amp; Late Payments – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/late-fee-interest-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/late-fee-interest-calculator/";</script>
+</head><body>
+<div id="bs-lf" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/late-fee-interest-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-lf',key:'lf',title:'Invoice Late Fee & Interest Calculator',
+inputs:[{id:'amt',label:'Invoice amount ($)',ph:'2400',step:0.01},{id:'due',label:'Due date',type:'date'},{id:'paid',label:'Payment date (blank = today)',type:'date'},{id:'rate',label:'Late interest (% per month)',def:'1.5',step:0.01},{id:'flat',label:'Flat late fee ($, optional)',def:'0',step:1},{id:'grace',label:'Grace period (days)',def:'0',step:1}],
+demo:{amt:'2400',due:'2026-09-15',paid:'2026-10-30',rate:'1.5',flat:'25',grace:'0'},
+calc:function(v,F){var a=v.amt;if(!(a>0)||!v.due)return {hint:'Enter the invoice amount and due date.'};var d1=new Date(v.due+'T00:00:00'),d2=v.paid?new Date(v.paid+'T00:00:00'):new Date();d2.setHours(0,0,0,0);
+ var days=Math.round((d2-d1)/864e5),late=Math.max(0,days-(v.grace||0));if(days<=0)return {kpis:[['Days late','0','g'],['Amount due',F.money(a)]],note:'The invoice is not overdue yet.'};
+ var int_=a*(v.rate||0)/100*12*late/365,fee=late>0?(v.flat||0):0,tot=a+int_+fee;
+ return {kpis:[['Days late',F.int(late),'w'],['Late interest',F.money(int_)],['Flat fee',F.money(fee)],['Total now due',F.money(tot),'g']],tables:[{title:'Breakdown',head:['Item','Amount'],rows:[['Original invoice',F.money(a)],['Interest: '+F.pct(v.rate||0)+' per month x '+late+' days',F.money(int_)],['Flat late fee',F.money(fee)],['Total due',F.money(tot)]]}],note:'Interest = amount x monthly rate x 12 x days late / 365 (simple interest). Late fees must be in your contract or invoice terms and within your state’s legal limits.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

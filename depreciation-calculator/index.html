@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Depreciation Calculator: Straight-Line, Declining Balance &amp; SYD – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/depreciation-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/depreciation-calculator/";</script>
+</head><body>
+<div id="bs-dp" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/depreciation-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-dp',key:'dp',title:'Depreciation Calculator',
+inputs:[{id:'cost',label:'Asset cost ($)',ph:'30000',step:100},{id:'salv',label:'Salvage value ($)',ph:'5000',step:100},{id:'life',label:'Useful life (years)',ph:'5',step:1},{id:'meth',label:'Method',type:'select',def:'sl',opts:[['sl','Straight-line'],['ddb','Double-declining balance'],['syd','Sum-of-the-years digits']]},{id:'yr',label:'First year placed in service',ph:'2026',step:1}],
+demo:{cost:'30000',salv:'5000',life:'5',meth:'sl',yr:'2026'},
+calc:function(v,F){var c=v.cost,s=v.salv||0,L=Math.round(v.life),m=v.meth,y0=v.yr>1900?Math.round(v.yr):null;if(!(c>0)||!(L>0))return {hint:'Enter the asset cost and useful life.'};if(s>=c)return {error:'Salvage value must be less than cost.'};
+ var base=c-s,bv=c,acc=0,rows=[],syd=L*(L+1)/2;
+ for(var i=1;i<=L;i++){var d;if(m==='sl')d=base/L;else if(m==='syd')d=base*(L-i+1)/syd;else{d=bv*2/L;var slr=(bv-s)/(L-i+1);if(slr>d)d=slr;if(bv-d<s)d=bv-s;if(i===L)d=bv-s}
+  d=Math.max(0,d);acc+=d;bv-=d;rows.push([(y0?String(y0+i-1)+' (year '+i+')':'Year '+i),F.money(d),F.money(acc),F.money(bv)])}
+ var nm={sl:'straight-line',ddb:'double-declining balance',syd:'sum-of-the-years digits'}[m];
+ return {kpis:[['First-year depreciation',rows[0][1],'g'],['Depreciable base',F.money(base)],['Book value at end',F.money(bv)],['Method',nm.charAt(0).toUpperCase()+nm.slice(1)]],tables:[{title:'Depreciation schedule',head:['Year','Depreciation','Accumulated','Book value'],rows:rows,foot:['Total',F.money(acc),'','']}],note:'Book depreciation using the '+nm+' method. Tax depreciation (MACRS, Section 179, bonus) follows different IRS rules; check with a tax professional.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loan Calculator with Amortization Schedule (Business &amp; Personal) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/loan-calculator-amortization-schedule/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/loan-calculator-amortization-schedule/";</script>
+</head><body>
+<div id="bs-ln" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/loan-calculator-amortization-schedule/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-ln',key:'ln',title:'Loan Payment & Amortization Schedule',
+inputs:[{id:'amt',label:'Loan amount ($)',ph:'50000',step:100},{id:'apr',label:'Interest rate (APR %)',ph:'8.5',step:0.01},{id:'yrs',label:'Term (years)',ph:'5',step:0.5},
+{id:'ppy',label:'Payment frequency',type:'select',def:'12',opts:[['12','Monthly'],['26','Every two weeks'],['52','Weekly'],['4','Quarterly']]},
+{id:'xtra',label:'Extra payment each period ($, optional)',ph:'0',step:10},{id:'start',label:'First payment date',type:'date'}],
+demo:{amt:'50000',apr:'8.5',yrs:'5',ppy:'12',xtra:'0',start:''},
+calc:function(v,F){var A=v.amt,apr=v.apr,y=v.yrs,ppy=+v.ppy||12,x=v.xtra||0;
+ if(!(A>0)||!(apr>=0)||!(y>0))return {hint:'Enter the loan amount, interest rate and term to see your payment and schedule.'};
+ var r=apr/100/ppy,n=Math.round(y*ppy),P=r?A*r/(1-Math.pow(1+r,-n)):A/n;
+ var d0=v.start?new Date(v.start+'T00:00:00'):null,bal=A,ti=0,tp=0,rows=[],yr={},k=0;
+ function dt(i){if(!d0)return '';var d=new Date(d0);if(ppy===12)d.setMonth(d.getMonth()+i);else if(ppy===4)d.setMonth(d.getMonth()+3*i);else d.setDate(d.getDate()+Math.round(365.25/ppy*i));return (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()}
+ while(bal>0.005&&k<n*2){var it=bal*r,pay=Math.min(P+x,bal+it),pr=pay-it;bal=bal-pr;if(bal<0.005)bal=0;ti+=it;tp+=pay;k++;rows.push([String(k)+(d0?' ('+dt(k-1)+')':''),F.money(pay),F.money(pr),F.money(it),F.money(bal)]);var Y=Math.ceil(k/ppy);yr[Y]=yr[Y]||[0,0,0,0];yr[Y][0]+=pay;yr[Y][1]+=pr;yr[Y][2]+=it;yr[Y][3]=bal}
+ var sum=Object.keys(yr).map(function(Y){var o=yr[Y];return ['Year '+Y,F.money(o[0]),F.money(o[1]),F.money(o[2]),F.money(o[3])]});
+ var base=r?P*n-A:0,saved=x?base-ti:0;
+ var kp=[['Payment per period',F.money(P),'g'],['Total interest',F.money(ti)],['Total of payments',F.money(tp)],['Number of payments',F.int(k)+(x?' (of '+n+')':'')]];
+ if(x)kp.push(['Interest saved with extra payments',F.money(saved),'g']);
+ return {kpis:kp,tables:[{title:'Yearly summary',head:['Year','Paid','Principal','Interest','Balance'],rows:sum,foot:['Total',F.money(tp),F.money(A),F.money(ti),'']},{title:'Full amortization schedule',head:['Payment #','Payment','Principal','Interest','Balance'],rows:rows}],note:'Payment = Loan x r / (1 - (1 + r)^-n), where r is the periodic rate ('+F.pct(apr/ppy,4)+') and n the number of payments ('+n+').'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

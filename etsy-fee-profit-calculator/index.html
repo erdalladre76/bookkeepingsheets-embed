@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Etsy Fee Calculator: Fees, Profit and the Price You Need (2026) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/etsy-fee-profit-calculator/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/etsy-fee-profit-calculator/";</script>
+</head><body>
+<div id="bs-et" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/etsy-fee-profit-calculator/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-et',key:'et',title:'Etsy Fee & Profit Calculator',
+inputs:[{id:'pr',label:'Item price ($)',ph:'28',step:0.01},{id:'sh',label:'Shipping you charge the buyer ($)',def:'5.95',step:0.01},{id:'mc',label:'Materials / product cost ($)',def:'7.50',step:0.01},{id:'pk',label:'Packaging ($)',def:'1.20',step:0.01},{id:'lb',label:'Shipping label you pay ($)',def:'5.10',step:0.01},{id:'tx',label:'Sales tax the buyer pays (%)',def:'7',step:0.1},{id:'oa',label:'Sale came from Offsite Ads?',type:'select',opts:[['0','No'],['15','Yes, 15% (shop under $10k/yr)'],['12','Yes, 12% (shop $10k+/yr)']],def:'0'},{id:'ad',label:'Etsy Ads spend per sale ($)',def:'0',step:0.01},{id:'tm',label:'Target profit margin (% of price + shipping)',def:'35',step:1}],
+demo:{pr:'28',sh:'5.95',mc:'7.50',pk:'1.20',lb:'5.10',tx:'7',oa:'0',ad:'0',tm:'35'},
+calc:function(v,F){var pr=v.pr;if(!(pr>0))return {hint:'Enter your item price.'};
+ function run(p){var rev=p+(v.sh||0),lst=0.2,trn=rev*0.065,proc=rev*(1+(v.tx||0)/100)*0.03+0.25,off=Math.min(100,rev*(+v.oa||0)/100),fees=lst+trn+proc+off+(v.ad||0),costs=(v.mc||0)+(v.pk||0)+(v.lb||0),pf=rev-fees-costs;return {rev:rev,lst:lst,trn:trn,proc:proc,off:off,fees:fees,costs:costs,pf:pf}}
+ var r=run(pr),tm=(v.tm||0)/100,a=0,b=10000;for(var i=0;i<60;i++){var m=(a+b)/2,x=run(m);if(x.pf>=tm*x.rev)b=m;else a=m}
+ return {kpis:[['Profit per sale',F.money(r.pf),r.pf>0?'g':'w'],['Etsy fees',F.money(r.fees)+' ('+F.pct(r.fees/r.rev*100,1)+')'],['Profit margin',F.pct(r.pf/r.rev*100,1)],['Lowest price for '+F.pct(tm*100,0)+' margin',F.money(Math.ceil(b*100)/100),'w']],
+ tables:[{title:'Where the money goes',head:['Item','Amount'],rows:[['Buyer pays (price + shipping)',F.money(r.rev)],['Listing fee',' -'+F.money(r.lst)],['Transaction fee (6.5%)',' -'+F.money(r.trn)],['Payment processing (3% + $0.25)',' -'+F.money(r.proc)],['Offsite Ads fee',' -'+F.money(r.off)],['Etsy Ads',' -'+F.money(v.ad||0)],['Materials + packaging',' -'+F.money((v.mc||0)+(v.pk||0))],['Shipping label',' -'+F.money(v.lb||0)],['Profit',F.money(r.pf)]]},
+ {title:'Profit at other prices',head:['Item price','Fees','Profit','Margin'],rows:[-5,0,5,10,15].map(function(d){var p=Math.max(1,pr+d),x=run(p);return [F.money(p),F.money(x.fees),F.money(x.pf),F.pct(x.pf/x.rev*100,1)]})}],
+ note:'US Etsy fees: $0.20 listing fee, 6.5% transaction fee on item price plus shipping, 3% + $0.25 payment processing on the total the buyer pays (including sales tax), and an Offsite Ads fee of 15% or 12% (capped at $100) only when a sale comes from an Etsy ad off the site. Etsy collects and remits sales tax for you. Fees can change; check Etsy\'s fee page. Estimate only.'}}});</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1099-NEC Checker 2026: Do You Need to File? (New $2,000 Threshold) – Bookkeeping Sheets</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://bookkeepingsheets.com/1099-nec-checker/">
+<style>@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format('woff2');font-weight:200 800;font-display:swap}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#1b2733;font-size:16px;line-height:1.5;padding:4px 10px 0}
+.bk2{margin:0!important}
+.bse-credit{font-size:13px;color:#64748b;text-align:center;padding:10px 6px 14px}
+.bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
+.bse-credit a:hover{text-decoration:underline}</style>
+<script>window.BS_PAGE="https://bookkeepingsheets.com/1099-nec-checker/";</script>
+</head><body>
+<div id="bs-nec" class="bs-tool"></div>
+<div class="bse-credit">Free calculator by <a href="https://bookkeepingsheets.com/1099-nec-checker/?utm_source=embed&utm_medium=iframe" target="_blank" rel="noopener">Bookkeeping Sheets</a></div>
+<script>(window.BSKQ=window.BSKQ||[]).push({id:'bs-nec',key:'nec',title:'1099-NEC Checker 2026',
+inputs:[{id:'amt',label:'Total paid to this person or business in 2026 ($)',ph:'2400',step:1},
+{id:'what',label:'What was it for?',type:'select',def:'svc',opts:[['svc','Services (labor, design, repairs, consulting)'],['legal','Legal services from an attorney'],['rent','Rent for office, equipment or land'],['prize','Prizes, awards or other income'],['goods','Goods or merchandise only']]},
+{id:'who',label:'Who did you pay?',type:'select',def:'ind',opts:[['ind','Individual or sole proprietor'],['llc','LLC or partnership (not taxed as a corporation)'],['corp','C corporation or S corporation'],['emp','My employee (on payroll)'],['gov','Government or tax-exempt organization']]},
+{id:'how',label:'How did you pay?',type:'select',def:'chk',opts:[['chk','Check, cash, bank transfer (ACH) or Zelle'],['card','Credit card, debit card or payment app (PayPal, Venmo business, Square)']]},
+{id:'biz',label:'Was it paid by your business?',type:'select',def:'y',opts:[['y','Yes, for my trade or business'],['n','No, a personal payment']]},
+{id:'w9',label:'Do you have their Form W-9 with a taxpayer ID?',type:'select',def:'y',opts:[['y','Yes'],['n','No']]},
+{id:'yr',label:'Year the payments were made',type:'select',def:'2026',opts:[['2026','2026 (forms due Feb 1, 2027)'],['2025','2025 (forms were due Feb 2, 2026)']]}],
+demo:{amt:'2400',what:'svc',who:'ind',how:'chk',biz:'y',w9:'y',yr:'2026'},
+calc:function(v,F){var a=v.amt;if(!(a>=0))return {hint:'Enter the total you paid this person or business during the year.'};
+ var T=v.yr==='2025'?600:2000,due=v.yr==='2025'?'Feb 2, 2026':'Feb 1, 2027',form='No form needed',why='',c='g';
+ if(v.biz==='n'){why='Personal payments (for your home or family) are not reported on Form 1099.'}
+ else if(v.who==='emp'){form='Form W-2';c='b';why='Employees get a W-2 through payroll, not a 1099-NEC.'}
+ else if(v.how==='card'){why='Card and payment-network payments are reported by the card company or payment processor on Form 1099-K, so you do not file a 1099 for them.'}
+ else if(v.what==='goods'){why='Payments for goods or merchandise alone are not reportable on Form 1099-NEC or 1099-MISC.'}
+ else if(v.who==='gov'){why='Payments to government agencies and tax-exempt organizations are generally not reported.'}
+ else if(v.who==='corp'&&v.what!=='legal'){why='Payments to C and S corporations are generally exempt. The main exception is legal services from an attorney.'}
+ else if(a<T){why='You paid '+F.money(a,0)+', which is under the '+F.money(T,0)+' threshold for payments made in '+v.yr+'.'+(v.yr==='2026'&&a>=600?' Under the old $600 rule this would have needed a form.':'')}
+ else if(v.what==='rent'||v.what==='prize'){form='Form 1099-MISC';c='r';why=(v.what==='rent'?'Rent goes in box 1':'Prizes and awards go in box 3')+' of Form 1099-MISC because the total is '+F.money(a,0)+' (threshold '+F.money(T,0)+').'}
+ else{form='Form 1099-NEC';c='r';why=(v.what==='legal'?'Legal fees to an attorney are reported in box 1 even if the law firm is a corporation. ':'')+'You paid '+F.money(a,0)+' for services to a non-employee, which meets the '+F.money(T,0)+' threshold.'}
+ var need=/^Form 1099/.test(form),bw=need&&v.w9==='n';
+ if(v.w9==='n'&&!need&&v.biz==='y'&&v.who!=='emp'&&v.how!=='card'&&v.what!=='goods'&&v.who!=='gov'&&v.who!=='corp')why+=' Get a W-9 now: if later payments push the yearly total to '+F.money(T,0)+' and you still have no taxpayer ID, you must withhold 24%.';
+ var k=[['Form needed',form,c],['Due date',need?due:'—',need?'b':''],['Threshold for '+v.yr,F.money(T,0)],['Backup withholding',bw?'Withhold 24%':'Not required',bw?'w':'g']];
+ var steps=need?[['1','Get the payee\'s W-9'],['2','Send copy B by '+due],['3','File with the IRS by '+due],['4','Check your state\'s rules']]:[['1','Keep the invoice and payment record'],['2','Watch the yearly total ('+F.money(T,0)+')'],['3','Get a W-9 before you pay']];
+ var rules=[['Services (person, sole prop, LLC)','$2,000+','1099-NEC'],['Attorney fees (even a corp)','$2,000+','1099-NEC'],['Rent, prizes, other income','$2,000+','1099-MISC'],['Royalties','$10+','1099-MISC'],['C or S corporation','any','Usually none'],['Card or payment app','any','None (1099-K)'],['Goods only','any','None']];
+ return {kpis:k,tables:[{title:'Next steps',head:['#','What to do'],rows:steps},{title:'2026 Form 1099 rules at a glance',head:['Payment','Threshold','Form'],rows:rules}],note:why+(need?' E-file through the IRS IRIS portal if you file 10 or more information returns in total.':'')+(bw?' With no taxpayer ID, withhold 24% from the payment that brings the yearly total to the threshold and from every later payment, and deposit it with the IRS. Once you file a form for this payee, next year\'s withholding starts from the first dollar.':'')+' Reporting thresholds only decide which forms get filed; the payee still reports all of the income. Estimate only, not tax advice.'}}});
+</script>
+<script src="../assets/kit.js"></script>
+<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
+if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
+</body></html>
