@@ -26,7 +26,7 @@ calc:function(v,F){var nr=v.nr,st=Math.max(1,v.st||1);if(!(nr>0))return {hint:'E
  {title:'Profit at other occupancy rates',head:['Occupancy','Profit per month'],rows:[40,50,60,70,80].map(function(o){return [F.pct(o,0),F.money(run(o).pf,0)]})}],
  note:'Airbnb\'s host-only fee is charged on the booking subtotal (nightly rate plus cleaning and other fees you set). Occupancy tax collected by Airbnb is not included. Profit is before income tax; depreciation and other deductions can lower your taxes. Check local short-term rental rules and permits. Estimate only.'}}});</script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

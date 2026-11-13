@@ -28,7 +28,7 @@ calc:function(v,F){var sf=v.sf;if(!(sf>0))return {hint:'Enter the home size in s
  {title:'Same home, other services',head:['Service','Price'],rows:[['Standard',1],['Deep clean',1.6],['Move-in / move-out',1.8]].map(function(s){var p2=(sf/600+(v.ba||0)*0.5+(v.bd||0)*0.25)*s[1]*fm,c2=(p2+tr)*(v.wg||0)*1.12+(v.sp||0);return [s[0],F.money(Math.ceil(c2/k/5)*5,0)]})}],
  note:'Time estimate: about 600 sq ft per person-hour for a standard clean, plus 30 minutes per bathroom and 15 per bedroom; weekly homes stay cleaner (15% less time), monthly and one-time cleans take longer. Time a few real jobs and adjust. Planning estimate only.'}}});</script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

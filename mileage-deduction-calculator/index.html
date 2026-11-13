@@ -22,7 +22,7 @@ calc:function(v,F){var a=v.mi1||0,b=v.mi2||0;if(!(a>0)&&!(b>0))return {hint:'Ent
  return {kpis:[['Mileage deduction',F.money(ded),'g'],['Plus parking & tolls',F.money(tot)],['Estimated tax saved',F.money(sav),'g'],['Total business miles',F.int(a+b)]],tables:[{title:'Breakdown',head:['Item','Amount'],rows:[[F.int(a)+' miles x '+(v.r1||0)+'¢ (Jan-Jun)',F.money(d1)],[F.int(b)+' miles x '+(v.r2||0)+'¢ (from Jul 1)',F.money(d2)],['Parking & tolls',F.money(v.park||0)],['Total deduction',F.money(tot)],['Tax saved at '+F.pct(v.tax||0,0),F.money(sav)]]}],note:'2026 IRS business rates: 72.5¢ per mile for trips Jan 1 - Jun 30 and 76¢ per mile for trips from Jul 1 (mid-year increase). Keep a mileage log with date, purpose and miles for every trip. Commuting from home to a regular workplace is not deductible.'}}});
 </script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

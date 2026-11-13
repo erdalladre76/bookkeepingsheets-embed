@@ -26,7 +26,7 @@ calc:function(v,F){var py=v.py,h=v.hr;if(!(py>0)||!(h>0)||!(v.mpg>0))return {hin
  {title:'Per mile and per year',head:['Measure','Amount'],rows:[['Payout per mile',F.money(mi?py/mi:0,2)],['Real cost per mile',F.money(mi?(gas+mt+dp)/mi:0,3)],['IRS mileage deduction ('+(v.rt||0)+'¢ × miles)',F.money(mi*rt,0)+' / week'],['Take-home per year (52 weeks)',F.money(take*52,0)]]}],
  note:'Taxes use the IRS standard mileage rate you enter (2026: 76 cents per business mile from July 1; 72.5 cents for January to June), which already covers gas, maintenance, insurance and wear, so you can\'t deduct those separately if you use it. Self-employment tax is 15.3% on 92.35% of profit. Income tax is a rough estimate at your bracket; state tax is not included. Keep a mileage log. Estimate only, not tax advice.'}}});</script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

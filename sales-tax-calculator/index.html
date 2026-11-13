@@ -25,7 +25,7 @@ calc:function(v,F){var a=v.amt,s=v.state||0,l=v.local||0,t=s+l;if(!(a>0)||!(t>=0
  return {kpis:[['Price before tax',F.money(net)],['Sales tax',F.money(tax),'w'],['Total price',F.money(gross),'g'],['Combined rate',F.pct(t,3)]],tables:[{title:'Breakdown',head:['Item','Amount'],rows:rows}],note:v.mode==='rev'?'Pre-tax price = Total / (1 + rate). Tax = Total - pre-tax price.':'Sales tax = Price x rate. Total = Price + tax.'}}});
 </script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

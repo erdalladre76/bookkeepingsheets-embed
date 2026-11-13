@@ -20,7 +20,7 @@ body{font-family:Manrope,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;col
 .bse-credit a{color:#0f766e;font-weight:700;text-decoration:none}
 .bse-credit a:hover{text-decoration:underline}"""
 
-RESIZE = """(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+RESIZE = """(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();"""
 
@@ -56,7 +56,7 @@ def page(slug, c):
 
 AUTO = ("<script>addEventListener('message',function(e){if(e.origin==='https://erdalladre76.github.io'&&e.data&&e.data.bsEmbed){"
         "var f=document.querySelectorAll('iframe[data-bs-embed]');for(var i=0;i<f.length;i++)if(f[i].contentWindow===e.source)"
-        "f[i].style.height=(e.data.h+4)+'px'}})</script>")
+        "f[i].style.height=(e.data.h+2)+'px'}})</script>")
 
 
 def embed_code(slug, c, h=900):

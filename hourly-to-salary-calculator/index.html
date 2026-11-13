@@ -25,7 +25,7 @@ calc:function(v,F){var a=v.amt,h=v.hpw,w=v.wpy,o=v.ot||0;if(!(a>0)||!(h>0)||!(w>
  return {kpis:k,tables:[{title:'Pay by period (before tax)',head:['Period','Gross pay'],rows:rows}],note:'Annual = hourly x hours per week x paid weeks'+(o?' + overtime at 1.5x':'')+'. Gross pay before taxes and deductions; 2,080 hours = 40 hours x 52 weeks.'}}});
 </script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

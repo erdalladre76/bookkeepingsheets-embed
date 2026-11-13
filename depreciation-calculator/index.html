@@ -26,7 +26,7 @@ calc:function(v,F){var c=v.cost,s=v.salv||0,L=Math.round(v.life),m=v.meth,y0=v.y
  return {kpis:[['First-year depreciation',rows[0][1],'g'],['Depreciable base',F.money(base)],['Book value at end',F.money(bv)],['Method',nm.charAt(0).toUpperCase()+nm.slice(1)]],tables:[{title:'Depreciation schedule',head:['Year','Depreciation','Accumulated','Book value'],rows:rows,foot:['Total',F.money(acc),'','']}],note:'Book depreciation using the '+nm+' method. Tax depreciation (MACRS, Section 179, bonus) follows different IRS rules; check with a tax professional.'}}});
 </script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

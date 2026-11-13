@@ -29,7 +29,7 @@ calc:function(v,F){var mi=v.mi;if(!(mi>0)||!(v.mpg>0))return {hint:'Enter your t
  {title:'What a load must pay',head:['Loaded miles','Break-even','At your margin'],rows:[250,500,1000,1500].map(function(m){return [F.int(m)+' miles',F.money(be*m,0),F.money(tg*m,0)]})}],
  note:'Rates are per loaded (paid) mile, because deadhead miles earn nothing but still cost fuel and wear. For comparison, the American Transportation Research Institute (ATRI) put the average cost of running a truck at $2.336 per mile in 2025, including driver pay. Planning estimate, not financial advice.'}}});</script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

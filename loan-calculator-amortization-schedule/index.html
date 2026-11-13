@@ -33,7 +33,7 @@ calc:function(v,F){var A=v.amt,apr=v.apr,y=v.yrs,ppy=+v.ppy||12,x=v.xtra||0;
  return {kpis:kp,tables:[{title:'Yearly summary',head:['Year','Paid','Principal','Interest','Balance'],rows:sum,foot:['Total',F.money(tp),F.money(A),F.money(ti),'']},{title:'Full amortization schedule',head:['Payment #','Payment','Principal','Interest','Balance'],rows:rows}],note:'Payment = Loan x r / (1 - (1 + r)^-n), where r is the periodic rate ('+F.pct(apr/ppy,4)+') and n the number of payments ('+n+').'}}});
 </script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

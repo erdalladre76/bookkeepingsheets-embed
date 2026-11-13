@@ -24,7 +24,7 @@ calc:function(v,F){var a=v.amt;if(!(a>0)||!v.due)return {hint:'Enter the invoice
  return {kpis:[['Days late',F.int(late),'w'],['Late interest',F.money(int_)],['Flat fee',F.money(fee)],['Total now due',F.money(tot),'g']],tables:[{title:'Breakdown',head:['Item','Amount'],rows:[['Original invoice',F.money(a)],['Interest: '+F.pct(v.rate||0)+' per month x '+late+' days',F.money(int_)],['Flat late fee',F.money(fee)],['Total due',F.money(tot)]]}],note:'Interest = amount x monthly rate x 12 x days late / 365 (simple interest). Late fees must be in your contract or invoice terms and within your state’s legal limits.'}}});
 </script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>

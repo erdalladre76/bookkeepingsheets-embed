@@ -30,7 +30,7 @@ calc:function(v,F){if(!(v.ob>=0)||v.ob===''||isNaN(v.ob))return {hint:'Enter you
  tables:[{title:'Your 13-week cash flow forecast',head:['Week','Opening cash','Cash in','Cash out','Net','Closing cash'],rows:rows}],
  note:(below?'Cash drops below your '+F.money(+v.bf||0,0)+' buffer first in week '+first+'. Act before then: chase overdue invoices, ask key customers for faster payment, move a supplier payment, or arrange a line of credit now while your numbers look fine. ':'Your cash stays above your buffer for all 13 weeks. ')+'Rent and loan payments are placed in weeks 1, 5, 9 and 13; payroll starts in week 1. Download the Excel template on this page to enter exact amounts week by week. Planning estimate only.'}}});</script>
 <script src="../assets/kit.js"></script>
-<script>(function(){function h(){try{parent.postMessage({bsEmbed:1,h:document.documentElement.scrollHeight},'*')}catch(e){}}
+<script>(function(){function h(){try{var c=document.querySelector('.bse-credit');var y=Math.ceil((c||document.body).getBoundingClientRect().bottom+window.scrollY);if(y!==window.__bsH){window.__bsH=y;parent.postMessage({bsEmbed:1,h:y},'*')}}catch(e){}}
 window.addEventListener('load',function(){h();setTimeout(h,600);setTimeout(h,2000)});
 if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);})();</script>
 </body></html>
