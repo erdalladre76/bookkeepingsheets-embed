@@ -1,0 +1,21 @@
+{"title":"No tax form = <em>no tax?</em>","who":"friend · me",
+"events":[
+{"card":{"img":"file:///home/claude/yt/img/etsy.jpg","a":"She sold <em>$14,600</em> on Etsy.<br>No tax form came.","b":"Does she owe tax?","url":false},"dur":2.2},
+{"s":"l","t":"no tax form from etsy this year!!","dur":1.1},
+{"s":"l","t":"so my $14,600 in candle sales is tax free right?","dur":1.6},
+{"s":"r","t":"lol no","typing":0.5,"dur":0.9},
+{"s":"r","t":"the form just didn't get sent","dur":1.3},
+{"s":"l","t":"but i'm under the $20,000 limit","typing":0.5,"dur":1.4},
+{"s":"r","t":"that limit is for the FORM. not the tax","typing":0.6,"dur":1.8},
+{"s":"l","t":"ok how bad is it","typing":0.4,"dur":1.1},
+{"s":"r","t":"sales $14,600","c":"calc","typing":0.4,"dur":1.0},
+{"s":"r","t":"fees + wax + jars + shipping −$6,100","c":"calc","dur":1.6},
+{"s":"r","t":"profit = $8,500","c":"calc","dur":1.2},
+{"s":"r","t":"× 92.35% × 15.3%","c":"calc","dur":1.4},
+{"s":"r","t":"= $1,201.01 self-employment tax","c":"big","dur":2.2},
+{"s":"l","t":"WHAT","typing":0.3,"dur":1.0},
+{"s":"r","t":"and income tax comes on top","typing":0.5,"dur":1.5},
+{"s":"l","t":"good thing i kept my receipts...","typing":0.6,"dur":1.4},
+{"s":"r","t":"those receipts just saved you $861.90","c":"big","typing":0.5,"dur":2.4},
+{"card":{"img":"file:///home/claude/yt/img/etsy.jpg","a":"Would <em>you</em> have<br>paid it?","b":"Free self-employment tax calculator:","url":true},"dur":3.2}
+]}

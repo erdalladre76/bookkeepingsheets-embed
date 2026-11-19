@@ -1,0 +1,101 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:M;font-weight:400;src:url(../node_modules/@fontsource/manrope/files/manrope-latin-400-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(../node_modules/@fontsource/manrope/files/manrope-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(../node_modules/@fontsource/manrope/files/manrope-latin-800-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#0b1d3a}
+body{font-family:M,sans-serif;color:#fff}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;
+ background:radial-gradient(1200px 800px at 70% 30%,#1b3a6b 0%,#0e2347 45%,#0a1a35 100%)}
+.scene{position:absolute;inset:0}
+.kick{font-weight:800;font-size:26px;letter-spacing:3px;color:#f5b731;text-transform:uppercase}
+.h{font-weight:800;font-size:76px;line-height:1.05;letter-spacing:-1px}
+.sub{font-weight:600;font-size:34px;color:#dbe4f3;margin-top:22px}
+.pad{position:absolute;left:120px;top:150px;right:120px}
+/* photo */
+.ph{position:absolute;inset:0;background-size:cover;background-position:center}
+.phg{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,20,42,.92) 0%,rgba(8,20,42,.75) 38%,rgba(8,20,42,.0) 70%)}
+.phtxt{position:absolute;left:110px;top:300px;width:900px}
+.phtxt .h{font-size:84px}
+/* big */
+.bigwrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-bottom:80px}
+.bigv{font-weight:800;font-size:190px;letter-spacing:-4px;color:#f5b731;line-height:1.05;margin-top:18px}
+.bigv.long{font-size:140px}
+/* cards */
+.cards{display:flex;gap:36px;margin-top:70px}
+.card{flex:1;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.14);border-radius:28px;padding:48px 40px;min-height:260px}
+.card .v{font-weight:800;font-size:72px;color:#f5b731;letter-spacing:-1px;line-height:1.1}
+.card .l{font-weight:600;font-size:32px;color:#dbe4f3;margin-top:18px;line-height:1.3}
+/* table */
+table{width:100%;border-collapse:separate;border-spacing:0 14px;margin-top:40px}
+th{font-weight:800;font-size:24px;letter-spacing:2px;color:#9fb2d4;text-align:left;padding:0 28px;text-transform:uppercase}
+td{font-weight:600;font-size:36px;padding:22px 28px;background:rgba(255,255,255,.08)}
+td:first-child{border-radius:16px 0 0 16px;font-weight:800}
+td:last-child{border-radius:0 16px 16px 0}
+tr.hl td{background:#fff;color:#0b1d3a}
+/* list */
+.list{margin-top:50px;display:flex;flex-direction:column;gap:22px}
+.li{display:flex;align-items:center;gap:26px;font-weight:800;font-size:50px}
+.chk{width:56px;height:56px;border-radius:14px;background:#2fae6b;flex:none;display:flex;align-items:center;justify-content:center}
+.chk:after{content:"";width:22px;height:12px;border-left:6px solid #fff;border-bottom:6px solid #fff;transform:rotate(-45deg) translate(2px,-3px)}
+/* calc */
+.calc{margin-top:50px;width:1300px}
+.cl{display:flex;justify-content:space-between;font-weight:600;font-size:44px;padding:22px 34px;border-bottom:2px solid rgba(255,255,255,.12)}
+.cl b{font-weight:800}
+.ct{display:flex;justify-content:space-between;font-weight:800;font-size:54px;padding:30px 34px;margin-top:22px;background:#f5b731;color:#0b1d3a;border-radius:20px}
+/* outro */
+.outro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-bottom:60px}
+.url{margin-top:50px;font-weight:800;font-size:58px;background:#fff;color:#0b1d3a;padding:18px 44px;border-radius:20px}
+.url span{color:#2fae6b}
+/* chrome */
+#bar{position:absolute;left:0;top:0;height:7px;background:#f5b731;z-index:9}
+#logo{position:absolute;right:40px;top:30px;z-index:9;background:rgba(10,24,48,.85);border-radius:12px;padding:10px 18px;font-weight:800;font-size:24px}
+#logo span{color:#3ccf86}
+#cap{position:absolute;left:0;right:0;bottom:56px;text-align:center;z-index:9}
+#cap div{display:inline-block;background:rgba(8,18,38,.88);padding:14px 30px;border-radius:14px;font-weight:800;font-size:44px;max-width:1500px}
+#cap em{font-style:normal;color:#f5b731}
+.in{opacity:0}
+</style></head>
+<body><div id="stage"><div id="sc"></div><div id="bar"></div>
+<div id="logo">bookkeeping<span>sheets</span>.com</div><div id="cap"></div></div>
+<script>
+let PLAN=null, built=[], IMGDIR='';
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function html(s){
+  const k=`<div class="kick">${esc(s.k||'')}</div>`;
+  if(s.type==='photo') return `<div class="ph" style="background-image:url('${IMGDIR}/${s.img}.jpg')"></div><div class="phg"></div>
+    <div class="phtxt">${k}<div class="h in" style="margin-top:18px">${esc(s.h)}</div><div class="sub in">${esc(s.sub||'')}</div></div>`;
+  if(s.type==='big') return `<div class="bigwrap">${k}<div class="bigv ${String(s.v).length>8?'long':''} in">${esc(s.v)}</div><div class="sub in">${esc(s.sub||'')}</div></div>`;
+  if(s.type==='cards') return `<div class="pad">${k}<div class="h" style="font-size:64px;margin-top:14px">${esc(s.h||'')}</div><div class="cards">${s.items.map(i=>`<div class="card in"><div class="v">${esc(i[0])}</div><div class="l">${esc(i[1])}</div></div>`).join('')}</div></div>`;
+  if(s.type==='table') return `<div class="pad">${k}<table><tr>${s.head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr>${s.rows.map((r,i)=>`<tr class="in ${(s.hl===i||(/^total$/i.test(r[0])))?'hl':''}">${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</table></div>`;
+  if(s.type==='list') return `<div class="pad">${k}<div class="list">${s.items.map(i=>`<div class="li in"><div class="chk"></div><div>${esc(i)}</div></div>`).join('')}</div></div>`;
+  if(s.type==='calc') return `<div class="pad">${k}<div class="calc">${s.lines.map(l=>`<div class="cl in"><span>${esc(l[0])}</span><b>${esc(l[1])}</b></div>`).join('')}<div class="ct in"><span>${esc(s.total[0])}</span><span>${esc(s.total[1])}</span></div></div></div>`;
+  if(s.type==='outro') return `<div class="outro"><div class="h" style="font-size:96px">${esc(s.h)}</div><div class="sub">${esc(s.sub||'')}</div><div class="url in">bookkeeping<span>sheets</span>.com</div></div>`;
+}
+function init(plan, imgdir, scale){
+  PLAN=plan; IMGDIR=imgdir;
+  document.getElementById('stage').style.transform=`scale(${scale})`;
+  const sc=document.getElementById('sc');
+  built=plan.scenes.map(s=>{const d=document.createElement('div');d.className='scene';d.innerHTML=html(s);d.style.display='none';sc.appendChild(d);return d;});
+  return Promise.all([...document.querySelectorAll('.ph')].map(e=>new Promise(r=>{const i=new Image();i.onload=r;i.onerror=r;i.src=e.style.backgroundImage.slice(5,-2);}))).then(()=>document.fonts.ready);
+}
+function ease(x){x=Math.max(0,Math.min(1,x));return 1-Math.pow(1-x,3)}
+function capHtml(t){return esc(t).replace(/(\$?[\d][\d,.]*%?¢?|\$[\d,.]+K?)/g,'<em>$1</em>')}
+let lastCap=null;
+function setT(t){
+  const S=PLAN.scenes;
+  let cur=0; for(let i=0;i<S.length;i++){ if(t>=S[i].t0) cur=i; }
+  built.forEach((d,i)=>{d.style.display=(i===cur)?'block':'none'});
+  const s=S[cur], d=built[cur], dt=t-s.t0, dur=s.t1-s.t0;
+  d.style.opacity=ease(dt/0.35); d.style.transform=`translateY(${(1-ease(dt/0.45))*24}px)`;
+  const ph=d.querySelector('.ph'); if(ph){ph.style.transform=`scale(${1.02+0.07*Math.min(1,dt/Math.max(dur,1))})`;}
+  const ins=[...d.querySelectorAll('.in')];
+  const step=Math.min(1.1,Math.max(0.35,(dur-1.2)/Math.max(ins.length,1)));
+  ins.forEach((e,i)=>{const p=ease((dt-0.25-i*step)/0.4);e.style.opacity=p;e.style.transform=`translateY(${(1-p)*30}px)`;});
+  document.getElementById('bar').style.width=(t/PLAN.total*1920)+'px';
+  let c=''; for(const x of PLAN.caps){ if(t>=x.t0&&t<x.t1){c=x.text;break;} }
+  if(c!==lastCap){document.getElementById('cap').innerHTML=c?`<div>${capHtml(c)}</div>`:'';lastCap=c;}
+}
+</script></body></html>
